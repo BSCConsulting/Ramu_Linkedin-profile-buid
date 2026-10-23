@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>The Executive Desk — Ramu Munugoti</title>
-    <meta name="description" content="The Executive Desk: Autonomous executive authority and multi-source intelligence engine for Ramu Munugoti.">
+    <meta name="description" content="The Executive Desk: Autonomous executive authority and multi-source intelligence engine for Ramu Munugoti. Fully editable with instant auto-save.">
     
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -123,6 +123,12 @@
             color: var(--text-muted);
             font-weight: 500;
             margin-top: 1px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-header-link {
@@ -333,7 +339,15 @@
             line-height: 1.5;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
             gap: 10px;
+        }
+
+        .meta-tags-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
@@ -350,8 +364,45 @@
             font-weight: 600;
         }
 
-        /* Editorial Text Box */
-        .editorial-content-box {
+        /* Auto-save & Edit Bar */
+        .edit-controls-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11.5px;
+            color: var(--text-muted);
+        }
+
+        .save-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            color: var(--brand-emerald);
+            background: var(--brand-emerald-light);
+            border: 1px solid var(--brand-emerald-border);
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-reset-text {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 2px;
+        }
+        .btn-reset-text:hover {
+            color: #dc2626;
+        }
+
+        /* Editable Editorial Text Box */
+        .editable-box {
             background: var(--bg-editorial);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius-md);
@@ -362,6 +413,27 @@
             white-space: pre-wrap;
             word-break: break-word;
             margin-bottom: 16px;
+            outline: none;
+            cursor: text;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .editable-box:focus {
+            border-color: var(--brand-emerald);
+            box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
+            background: #ffffff;
+        }
+
+        .editable-helper-hint {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: -10px;
+            margin-bottom: 14px;
+            padding-left: 4px;
         }
 
         /* Action Buttons Row */
@@ -461,7 +533,7 @@
                 color: #000000 !important;
                 padding: 0 !important;
             }
-            header, .nav-tabs, .tab-bar-card, .bottom-nav, .ribbon-wrapper, .button-action-row, .btn-action, .toast-pill {
+            header, .nav-tabs, .tab-bar-card, .bottom-nav, .ribbon-wrapper, .button-action-row, .btn-action, .toast-pill, .edit-controls-bar, .editable-helper-hint {
                 display: none !important;
             }
             .container {
@@ -480,7 +552,7 @@
                 box-shadow: none !important;
                 padding: 0 !important;
             }
-            .editorial-content-box {
+            .editable-box {
                 background: none !important;
                 border: none !important;
                 color: #0f172a !important;
@@ -618,7 +690,7 @@
             </button>
         </div>
 
-        <!-- ==================== TAB 1: THEMATIC STREAMS (OPTION B) ==================== -->
+        <!-- ==================== TAB 1: THEMATIC STREAMS (EDITABLE + AUTO-SAVE) ==================== -->
         <div id="pane-streams" class="tab-pane active">
             
             <!-- Stream 1: Tuesday CSR -->
@@ -630,11 +702,16 @@
                     <span class="tag-badge tag-emerald">Tuesday 8:30 AM</span>
                 </div>
                 <div class="meta-context">
-                    <span class="meta-tag">🏛️ Tracked: MCA (Sec 135) • Tata Trusts • Azim Premji</span>
-                    <span class="meta-tag">🎯 Target: Corporate Boards & CSR Chairs</span>
-                    <span class="meta-tag">⏱️ 1.5 min read</span>
+                    <div class="meta-tags-left">
+                        <span class="meta-tag">🏛️ Tracked: MCA (Sec 135) • Tata Trusts</span>
+                        <span class="meta-tag">🎯 Target: Corporate Boards</span>
+                    </div>
+                    <div class="edit-controls-bar">
+                        <span class="save-status-pill" id="status-stream-csr-post">✓ Saved</span>
+                        <button class="btn-reset-text" onclick="resetSection('stream-csr-post')">Reset to default</button>
+                    </div>
                 </div>
-                <div class="editorial-content-box" id="stream-csr-post">Whenever I review CSR impact presentations, I look for one specific slide:
+                <div class="editable-box" contenteditable="true" id="stream-csr-post" oninput="handleAutoSave('stream-csr-post')" spellcheck="false">Whenever I review CSR impact presentations, I look for one specific slide:
 
 What happened to the beneficiaries 12 months after the funding ended?
 
@@ -659,6 +736,10 @@ If your CSR reports don't track what happens 12 months post-intervention, you ar
 Curious to hear from other CSR heads: how do you track candidate retention after year one?
 
 #CSR #SocialImpact #SROI #CorporateGovernance #MCA #Section135 #RamuMunugoti</div>
+                <div class="editable-helper-hint">
+                    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                    Tap anywhere in the box to edit. All changes auto-save instantly to your device.
+                </div>
                 <div class="button-action-row">
                     <button class="btn-action btn-emerald" onclick="copySnippet('stream-csr-post', 'Tuesday CSR Post')">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
@@ -675,16 +756,21 @@ Curious to hear from other CSR heads: how do you track candidate retention after
             <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
-                        <h3>Wednesday Stream: Agribusiness & Rural Livelihood Federations</h3>
+                        <h3>Wednesday Stream: Agribusiness & Rural Livelihoods</h3>
                     </div>
                     <span class="tag-badge tag-solar">Wednesday 8:30 AM</span>
                 </div>
                 <div class="meta-context">
-                    <span class="meta-tag">🌾 Tracked: NABARD • SFAC • UN FAO • MoAFW</span>
-                    <span class="meta-tag">🎯 Target: Agribusiness CEOs & FPO Heads</span>
-                    <span class="meta-tag">⏱️ 1.6 min read</span>
+                    <div class="meta-tags-left">
+                        <span class="meta-tag">🌾 Tracked: NABARD • SFAC • UN FAO</span>
+                        <span class="meta-tag">🎯 Target: Agribusiness CEOs</span>
+                    </div>
+                    <div class="edit-controls-bar">
+                        <span class="save-status-pill" id="status-stream-agri-post">✓ Saved</span>
+                        <button class="btn-reset-text" onclick="resetSection('stream-agri-post')">Reset to default</button>
+                    </div>
                 </div>
-                <div class="editorial-content-box" id="stream-agri-post">A lot of people think farmer producer companies (FPOs) fail because farmers don't want to cooperate.
+                <div class="editable-box" contenteditable="true" id="stream-agri-post" oninput="handleAutoSave('stream-agri-post')" spellcheck="false">A lot of people think farmer producer companies (FPOs) fail because farmers don't want to cooperate.
 
 That hasn't been my experience on the ground.
 
@@ -705,6 +791,10 @@ An FPO is not a charity. It's a rural enterprise. If you don't solve the farmer'
 Has anyone else working with producer companies found a reliable way to solve the harvest-week working capital gap?
 
 #Agribusiness #RuralDevelopment #FPO #NABARD #Livelihoods #SupplyChain #RamuMunugoti</div>
+                <div class="editable-helper-hint">
+                    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                    Tap anywhere in the box to edit. All changes auto-save instantly to your device.
+                </div>
                 <div class="button-action-row">
                     <button class="btn-action btn-emerald" onclick="copySnippet('stream-agri-post', 'Wednesday Agribusiness Post')">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
@@ -721,16 +811,21 @@ Has anyone else working with producer companies found a reliable way to solve th
             <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
-                        <h3>Thursday Stream: Public Policy & State Systems Convergence</h3>
+                        <h3>Thursday Stream: Public Policy & State Systems</h3>
                     </div>
                     <span class="tag-badge tag-navy">Thursday 8:30 AM</span>
                 </div>
                 <div class="meta-context">
-                    <span class="meta-tag">🏛️ Tracked: NITI Aayog • MoSDE • CPR • CAG</span>
-                    <span class="meta-tag">🎯 Target: District Collectors & State Secretaries</span>
-                    <span class="meta-tag">⏱️ 1.6 min read</span>
+                    <div class="meta-tags-left">
+                        <span class="meta-tag">🏛️ Tracked: NITI Aayog • MoSDE • CPR</span>
+                        <span class="meta-tag">🎯 Target: District Administration</span>
+                    </div>
+                    <div class="edit-controls-bar">
+                        <span class="save-status-pill" id="status-stream-policy-post">✓ Saved</span>
+                        <button class="btn-reset-text" onclick="resetSection('stream-policy-post')">Reset to default</button>
+                    </div>
                 </div>
-                <div class="editorial-content-box" id="stream-policy-post">There's an old assumption in public administration that you have to choose between speed and audit compliance.
+                <div class="editable-box" contenteditable="true" id="stream-policy-post" oninput="handleAutoSave('stream-policy-post')" spellcheck="false">There's an old assumption in public administration that you have to choose between speed and audit compliance.
 
 "If you follow every rule, work stalls. If you move fast, you'll get CAG audit queries."
 
@@ -752,6 +847,10 @@ Public systems don't fail because people don't care. They fail when reporting la
 Clean data and field discipline are the best protection any public program can have.
 
 #PublicPolicy #Governance #SkillIndia #NITIAayog #PublicAdministration #CAG #RamuMunugoti</div>
+                <div class="editable-helper-hint">
+                    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                    Tap anywhere in the box to edit. All changes auto-save instantly to your device.
+                </div>
                 <div class="button-action-row">
                     <button class="btn-action btn-emerald" onclick="copySnippet('stream-policy-post', 'Thursday Policy Post')">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
@@ -768,16 +867,21 @@ Clean data and field discipline are the best protection any public program can h
             <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
-                        <h3>Saturday Stream: Clean Energy, Solar & Multilateral Transition</h3>
+                        <h3>Saturday Stream: Clean Energy, Solar & Transition</h3>
                     </div>
                     <span class="tag-badge tag-solar">Saturday 11:00 AM</span>
                 </div>
                 <div class="meta-context">
-                    <span class="meta-tag">⚡ Tracked: CEEW • ISA • World Bank Energy • MNRE</span>
-                    <span class="meta-tag">🎯 Target: Cleantech Developers & Chief of Party Leads</span>
-                    <span class="meta-tag">⏱️ 1.7 min read</span>
+                    <div class="meta-tags-left">
+                        <span class="meta-tag">⚡ Tracked: CEEW • ISA • World Bank • MNRE</span>
+                        <span class="meta-tag">🎯 Target: Cleantech Leads</span>
+                    </div>
+                    <div class="edit-controls-bar">
+                        <span class="save-status-pill" id="status-stream-energy-post">✓ Saved</span>
+                        <button class="btn-reset-text" onclick="resetSection('stream-energy-post')">Reset to default</button>
+                    </div>
                 </div>
-                <div class="editorial-content-box" id="stream-energy-post">With PM Surya Ghar (Muft Bijli Yojana), everyone is talking about rooftop acquisition and consumer subsidies.
+                <div class="editable-box" contenteditable="true" id="stream-energy-post" oninput="handleAutoSave('stream-energy-post')" spellcheck="false">With PM Surya Ghar (Muft Bijli Yojana), everyone is talking about rooftop acquisition and consumer subsidies.
 
 Those are important, but they aren't where the project actually gets stuck.
 
@@ -799,6 +903,10 @@ If we want to hit the one-crore rooftop goal smoothly, the focus needs to shift 
 To the solar installers and engineers here: what is your current turnaround time between physical panel mounting and net-meter commissioning?
 
 #SolarEnergy #PMSuryaGhar #CleanEnergy #CEEW #EnergyTransition #WorldBank #RamuMunugoti</div>
+                <div class="editable-helper-hint">
+                    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                    Tap anywhere in the box to edit. All changes auto-save instantly to your device.
+                </div>
                 <div class="button-action-row">
                     <button class="btn-action btn-emerald" onclick="copySnippet('stream-energy-post', 'Saturday Clean Energy Post')">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
@@ -813,7 +921,7 @@ To the solar installers and engineers here: what is your current turnaround time
 
         </div>
 
-        <!-- ==================== TAB 2: PROFILE & AVAILABILITY ==================== -->
+        <!-- ==================== TAB 2: PROFILE & AVAILABILITY (EDITABLE) ==================== -->
         <div id="pane-profile" class="tab-pane">
             <div class="prosperity-card" style="border-color: var(--brand-emerald-border); background: var(--brand-emerald-light);">
                 <div class="card-title-group" style="margin-bottom: 6px;">
@@ -828,9 +936,20 @@ To the solar installers and engineers here: what is your current turnaround time
                     <div class="card-title-group">
                         <h3>1. Optimized LinkedIn Headline</h3>
                     </div>
-                    <span class="tag-badge tag-navy">214 Chars (Max 220)</span>
+                    <span class="tag-badge tag-navy">Editable</span>
                 </div>
-                <div class="editorial-content-box" id="prof-headline">Program Director & Senior Operations Lead | Rural Livelihoods, FPO Federations & CSR | Ex-State Lead, NSDC (MoSDE) | ₹45Cr+ Public Budget (Zero Audit Flags) | TISS Mumbai (M.A. Governance) + B.Tech Mechanical</div>
+                <div class="meta-context">
+                    <span class="meta-tag">Paste into your LinkedIn Headline</span>
+                    <div class="edit-controls-bar">
+                        <span class="save-status-pill" id="status-prof-headline">✓ Saved</span>
+                        <button class="btn-reset-text" onclick="resetSection('prof-headline')">Reset</button>
+                    </div>
+                </div>
+                <div class="editable-box" contenteditable="true" id="prof-headline" oninput="handleAutoSave('prof-headline')" spellcheck="false">Program Director & Senior Operations Lead | Rural Livelihoods, FPO Federations & CSR | Ex-State Lead, NSDC (MoSDE) | ₹45Cr+ Public Budget (Zero Audit Flags) | TISS Mumbai (M.A. Governance) + B.Tech Mechanical</div>
+                <div class="editable-helper-hint">
+                    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                    Tap to edit text directly. Auto-saves as you type.
+                </div>
                 <button class="btn-action btn-emerald" style="width: 100%;" onclick="copySnippet('prof-headline', 'Headline')">
                     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                     Copy Headline
@@ -843,9 +962,16 @@ To the solar installers and engineers here: what is your current turnaround time
                     <div class="card-title-group">
                         <h3>2. About Summary with Explicit Availability Clause</h3>
                     </div>
-                    <span class="tag-badge tag-emerald">Executive Story</span>
+                    <span class="tag-badge tag-emerald">Editable</span>
                 </div>
-                <div class="editorial-content-box" id="prof-about">Over the last 15 years, my career has been split across two worlds that rarely talk to each other: engineering systems and grassroots public administration.
+                <div class="meta-context">
+                    <span class="meta-tag">Paste into your LinkedIn About section</span>
+                    <div class="edit-controls-bar">
+                        <span class="save-status-pill" id="status-prof-about">✓ Saved</span>
+                        <button class="btn-reset-text" onclick="resetSection('prof-about')">Reset</button>
+                    </div>
+                </div>
+                <div class="editable-box" contenteditable="true" id="prof-about" oninput="handleAutoSave('prof-about')" spellcheck="false">Over the last 15 years, my career has been split across two worlds that rarely talk to each other: engineering systems and grassroots public administration.
 
 I started out with a B.Tech in Mechanical Engineering, learning how hardware, hydraulics, and physical plant machinery operate. Later, I completed my M.A. in Rural Development & Governance from the Tata Institute of Social Sciences (TISS, Mumbai) to understand how government policies, Panchayati Raj institutions, and district collectors actually make decisions.
 
@@ -867,6 +993,10 @@ I currently lead BSC Consulting as a practitioner sandbox for field pilots and a
 
 Available for immediate domestic (Pan-India) and international expatriate appointments.
 Direct Inquiries: ramu.munugoti@bsctech.in | Hyderabad, Telangana</div>
+                <div class="editable-helper-hint">
+                    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                    Tap to edit text directly. Auto-saves as you type.
+                </div>
                 <button class="btn-action btn-outline" style="width: 100%; border-color: var(--brand-emerald); color: var(--brand-emerald);" onclick="copySnippet('prof-about', 'About Section')">
                     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                     Copy About Section
@@ -910,8 +1040,11 @@ Direct Inquiries: ramu.munugoti@bsctech.in | Hyderabad, Telangana</div>
                     <input type="text" class="form-input" id="rec-org" value="UNDP India" oninput="generateCustomNote()">
                 </div>
 
-                <label class="form-label" style="margin-top: 14px;">Live Preview (Optimized for LinkedIn Mobile App):</label>
-                <div class="editorial-content-box" id="note-preview-text" style="font-size: 13.5px; padding: 14px 16px;"></div>
+                <div class="meta-context" style="margin-top: 14px; margin-bottom: 6px;">
+                    <label class="form-label" style="margin-bottom: 0;">Editable Live Preview (Auto-saves):</label>
+                    <span class="save-status-pill" id="status-note-preview-text">✓ Ready</span>
+                </div>
+                <div class="editable-box" contenteditable="true" id="note-preview-text" oninput="handleManualNoteEdit()" style="font-size: 13.5px; padding: 14px 16px;"></div>
                 <div class="char-counter" id="note-char-count">245 / 300 characters</div>
 
                 <button class="btn-action btn-emerald" style="width: 100%; margin-top: 12px;" onclick="copySnippet('note-preview-text', 'Connection Note')">
@@ -921,19 +1054,23 @@ Direct Inquiries: ramu.munugoti@bsctech.in | Hyderabad, Telangana</div>
             </div>
         </div>
 
-        <!-- ==================== TAB 4: FEATURED ONE-PAGER BIO ==================== -->
+        <!-- ==================== TAB 4: FEATURED ONE-PAGER BIO (EDITABLE) ==================== -->
         <div id="pane-artifacts" class="tab-pane">
             <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
                         <h3>Executive Briefing & Key Personnel One-Pager</h3>
                     </div>
-                    <span class="tag-badge tag-emerald">Print / PDF Ready</span>
+                    <span class="tag-badge tag-emerald">Editable & Printable</span>
                 </div>
                 <div class="meta-context">
                     <span>Formatted strictly for Boardroom Reviews, Multilateral Bids (USAID/World Bank), and CPSE E-7/E-8 Tracks.</span>
+                    <div class="edit-controls-bar">
+                        <span class="save-status-pill" id="status-onepager-text">✓ Saved</span>
+                        <button class="btn-reset-text" onclick="resetSection('onepager-text')">Reset</button>
+                    </div>
                 </div>
-                <div class="editorial-content-box" id="onepager-text" style="font-size: 13.5px; line-height: 1.68;">RAMU MUNUGOTI
+                <div class="editable-box" contenteditable="true" id="onepager-text" oninput="handleAutoSave('onepager-text')" spellcheck="false" style="font-size: 13.5px; line-height: 1.68;">RAMU MUNUGOTI
 Senior Executive | Program Director | Chief of Party | Public Systems Leader
 Hyderabad, Telangana, India | Open to Pan-India & Global Deployments
 Contact: ramu.munugoti@bsctech.in | linkedin.com/in/ramumunugoti
@@ -954,6 +1091,10 @@ CORE DOMAINS:
 
 AVAILABILITY:
 Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Party), Long-term Project Deployments, and Strategic Board Retainers.</div>
+                <div class="editable-helper-hint">
+                    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                    Tap to edit text directly. When you click "Print / Save PDF", it downloads your edited version!
+                </div>
                 <div class="button-action-row">
                     <button class="btn-action btn-emerald" onclick="copySnippet('onepager-text', 'Executive Bio')">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
@@ -1022,6 +1163,78 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
     </div>
 
     <script>
+        // Store default original texts for reset capabilities
+        const originalDefaults = {};
+        const editableIds = [
+            'stream-csr-post',
+            'stream-agri-post',
+            'stream-policy-post',
+            'stream-energy-post',
+            'prof-headline',
+            'prof-about',
+            'onepager-text'
+        ];
+
+        // Initialize localStorage auto-save system
+        document.addEventListener('DOMContentLoaded', () => {
+            editableIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                
+                // Cache default
+                originalDefaults[id] = el.innerText;
+
+                // Load from localStorage if present
+                const saved = localStorage.getItem('execdesk_' + id);
+                if (saved !== null) {
+                    el.innerText = saved;
+                    setSavePill(id, '✓ Saved (Custom)');
+                } else {
+                    setSavePill(id, '✓ Default');
+                }
+            });
+
+            generateCustomNote();
+        });
+
+        // Auto-save debounce tracker
+        const saveTimeouts = {};
+
+        function handleAutoSave(elementId) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+
+            setSavePill(elementId, 'Saving...');
+
+            if (saveTimeouts[elementId]) {
+                clearTimeout(saveTimeouts[elementId]);
+            }
+
+            saveTimeouts[elementId] = setTimeout(() => {
+                const text = el.innerText;
+                localStorage.setItem('execdesk_' + elementId, text);
+                setSavePill(elementId, '✓ Saved');
+            }, 600);
+        }
+
+        function setSavePill(elementId, statusText) {
+            const pill = document.getElementById('status-' + elementId);
+            if (pill) {
+                pill.innerText = statusText;
+            }
+        }
+
+        function resetSection(elementId) {
+            if (!confirm('Reset this section back to its original default content?')) return;
+            const el = document.getElementById(elementId);
+            if (!el || !originalDefaults[elementId]) return;
+
+            el.innerText = originalDefaults[elementId];
+            localStorage.removeItem('execdesk_' + elementId);
+            setSavePill(elementId, '✓ Default Restored');
+            displayToast('Reset to original default content!');
+        }
+
         function activateTab(tabKey) {
             document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-tab-btn').forEach(el => el.classList.remove('active'));
@@ -1045,6 +1258,8 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
         function copySnippet(elementId, label) {
             const el = document.getElementById(elementId);
             if (!el) return;
+            
+            // Reads current (potentially edited) text!
             const text = el.innerText || el.textContent;
 
             if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1106,14 +1321,21 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
             }
 
             const previewBox = document.getElementById('note-preview-text');
-            const counter = document.getElementById('note-char-count');
             previewBox.innerText = text;
+            updateCharCount(text);
+        }
+
+        function handleManualNoteEdit() {
+            const previewBox = document.getElementById('note-preview-text');
+            const text = previewBox.innerText;
+            updateCharCount(text);
+        }
+
+        function updateCharCount(text) {
+            const counter = document.getElementById('note-char-count');
             counter.innerText = `${text.length} / 300 characters`;
             counter.style.color = text.length > 300 ? '#dc2626' : '#065f46';
         }
-
-        // Initialize live generator
-        generateCustomNote();
     </script>
 </body>
 </html>
