@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ramu Munugoti — Executive Authority & Career Desk</title>
-    <meta name="description" content="High-impact executive command center for Ramu Munugoti. Live PIB policy radar, institutional outreach, featured artifacts, and grounded field posts.">
+    <meta name="description" content="Clean Energy & Natural Prosperity Executive Command Center for Ramu Munugoti. Live PIB policy radar, institutional outreach, featured artifacts, and grounded field posts.">
     
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,27 +13,40 @@
 
     <style>
         :root {
-            --bg-base: #060911;
-            --bg-surface: rgba(15, 23, 42, 0.72);
-            --bg-surface-elevated: rgba(30, 41, 59, 0.7);
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-strong: rgba(255, 255, 255, 0.16);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-tertiary: #64748b;
-            --brand-primary: #2563eb;
-            --brand-primary-light: #3b82f6;
-            --brand-primary-glow: rgba(37, 99, 235, 0.35);
-            --accent-emerald: #10b981;
-            --accent-emerald-glow: rgba(16, 185, 129, 0.25);
-            --accent-amber: #f59e0b;
-            --accent-purple: #8b5cf6;
-            --radius-xl: 18px;
-            --radius-lg: 14px;
-            --radius-md: 10px;
+            /* Option 2: Clean Energy & Natural Prosperity Palette */
+            --bg-base: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-elevated: #f1f5f9;
+            --bg-editorial: #fbfcfd;
+            --border-subtle: #e2e8f0;
+            --border-medium: #cbd5e1;
+            --border-strong: #94a3b8;
+            
+            --text-primary: #0f172a;     /* Deep Charcoal Ink */
+            --text-secondary: #334155;   /* Rich Slate */
+            --text-muted: #64748b;       /* Cool Muted Gray */
+            
+            --brand-emerald: #065f46;    /* Deep Pine / Forest Emerald */
+            --brand-emerald-hover: #047857;
+            --brand-emerald-light: #ecfdf5;
+            --brand-emerald-border: #a7f3d0;
+            
+            --accent-solar: #d97706;     /* Warm Solar Gold / Amber */
+            --accent-solar-light: #fffbeb;
+            --accent-solar-border: #fde68a;
+            
+            --accent-navy: #1e3a8a;      /* Institutional Navy */
+            --accent-navy-light: #eff6ff;
+            --accent-navy-border: #bfdbfe;
+
+            --radius-xl: 16px;
+            --radius-lg: 12px;
+            --radius-md: 9px;
             --radius-sm: 6px;
-            --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-            --shadow-glow: 0 0 35px -5px rgba(37, 99, 235, 0.25);
+            
+            --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+            --shadow-hover: 0 10px 28px -4px rgba(15, 23, 42, 0.1), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+            --shadow-btn: 0 3px 12px rgba(6, 95, 70, 0.22);
         }
 
         * {
@@ -47,9 +60,9 @@
         body {
             background-color: var(--bg-base);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.12) 0px, transparent 45%),
-                radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.07) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(217, 119, 6, 0.06) 0px, transparent 45%),
+                radial-gradient(at 50% 100%, rgba(30, 58, 138, 0.04) 0px, transparent 50%);
             background-attachment: fixed;
             color: var(--text-primary);
             min-height: 100vh;
@@ -62,9 +75,9 @@
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(6, 9, 17, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-subtle);
             padding: 14px 20px;
         }
@@ -84,59 +97,60 @@
         }
 
         .avatar-initials {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 10px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, var(--brand-emerald), #047857);
             color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 800;
             letter-spacing: -0.5px;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 12px rgba(6, 95, 70, 0.25);
         }
 
         .brand-meta h1 {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 800;
-            color: #ffffff;
+            color: var(--text-primary);
             letter-spacing: -0.3px;
             line-height: 1.2;
         }
 
         .brand-meta p {
-            font-size: 11.5px;
-            color: var(--text-secondary);
+            font-size: 12px;
+            color: var(--text-muted);
             font-weight: 500;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin-top: 1px;
         }
 
         .btn-header-link {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border-subtle);
-            color: #cbd5e1;
-            padding: 7px 12px;
+            background: #ffffff;
+            border: 1px solid var(--border-medium);
+            color: var(--text-secondary);
+            padding: 7px 13px;
             border-radius: var(--radius-sm);
             font-size: 12px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
         }
 
         .btn-header-link:hover {
-            background: rgba(255, 255, 255, 0.12);
-            color: #ffffff;
+            border-color: var(--brand-emerald);
+            color: var(--brand-emerald);
+        }
+
+        .btn-header-link svg {
+            width: 14px;
+            height: 14px;
+            stroke-width: 2.2px;
         }
 
         /* Container */
@@ -162,37 +176,34 @@
         }
 
         .metric-pill {
-            background: var(--bg-surface);
-            backdrop-filter: blur(12px);
+            background: #ffffff;
             border: 1px solid var(--border-subtle);
-            padding: 6px 13px;
+            padding: 6px 14px;
             border-radius: 999px;
             display: flex;
             align-items: center;
             gap: 7px;
             font-size: 12px;
             font-weight: 600;
-            color: #e2e8f0;
+            color: var(--text-secondary);
             white-space: nowrap;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
         }
 
         .metric-pill .dot {
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
-            background: var(--accent-emerald);
-            box-shadow: 0 0 8px var(--accent-emerald);
+            background: var(--brand-emerald);
         }
 
-        .metric-pill.blue .dot {
-            background: var(--brand-primary-light);
-            box-shadow: 0 0 8px var(--brand-primary-light);
+        .metric-pill.solar .dot {
+            background: var(--accent-solar);
         }
 
         /* Tabs Navigation */
         .tab-bar-card {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
+            background: #ffffff;
             border: 1px solid var(--border-subtle);
             padding: 6px;
             border-radius: var(--radius-lg);
@@ -201,6 +212,7 @@
             gap: 6px;
             overflow-x: auto;
             scrollbar-width: none;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
         }
         .tab-bar-card::-webkit-scrollbar { display: none; }
 
@@ -209,7 +221,7 @@
             min-width: 120px;
             background: transparent;
             border: none;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             padding: 10px 14px;
             font-size: 13px;
             font-weight: 600;
@@ -227,19 +239,18 @@
             width: 16px;
             height: 16px;
             stroke-width: 2.2px;
-            opacity: 0.7;
-            transition: all 0.2s ease;
+            opacity: 0.75;
         }
 
         .nav-tab-btn:hover {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+            background: var(--bg-elevated);
         }
 
         .nav-tab-btn.active {
-            background: var(--brand-primary);
+            background: var(--brand-emerald);
             color: #ffffff;
-            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 4px 14px rgba(6, 95, 70, 0.28);
         }
 
         .nav-tab-btn.active svg {
@@ -249,30 +260,29 @@
         /* Tab Panes */
         .tab-pane {
             display: none;
-            animation: paneEntrance 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: paneEntrance 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .tab-pane.active { display: block; }
 
         @keyframes paneEntrance {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Cards Design */
-        .glass-card {
+        /* Clean Energy Card Design */
+        .prosperity-card {
             background: var(--bg-surface);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius-xl);
             padding: 22px;
             margin-bottom: 22px;
-            box-shadow: var(--shadow-subtle);
-            transition: border-color 0.2s ease;
+            box-shadow: var(--shadow-card);
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
-        .glass-card:hover {
-            border-color: var(--border-strong);
+        .prosperity-card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--border-medium);
         }
 
         .card-header-bar {
@@ -284,9 +294,9 @@
         }
 
         .card-title-group h3 {
-            font-size: 16.5px;
+            font-size: 17px;
             font-weight: 700;
-            color: #ffffff;
+            color: var(--text-primary);
             letter-spacing: -0.3px;
             line-height: 1.35;
         }
@@ -301,14 +311,25 @@
             white-space: nowrap;
         }
 
-        .tag-blue { background: rgba(37, 99, 235, 0.15); color: #93c5fd; border: 1px solid rgba(37, 99, 235, 0.35); }
-        .tag-emerald { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.35); }
-        .tag-amber { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.35); }
-        .tag-purple { background: rgba(139, 92, 246, 0.15); color: #d8b4fe; border: 1px solid rgba(139, 92, 246, 0.35); }
+        .tag-emerald { 
+            background: var(--brand-emerald-light); 
+            color: var(--brand-emerald); 
+            border: 1px solid var(--brand-emerald-border); 
+        }
+        .tag-solar { 
+            background: var(--accent-solar-light); 
+            color: var(--accent-solar); 
+            border: 1px solid var(--accent-solar-border); 
+        }
+        .tag-navy { 
+            background: var(--accent-navy-light); 
+            color: var(--accent-navy); 
+            border: 1px solid var(--accent-navy-border); 
+        }
 
         .meta-context {
             font-size: 12.5px;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             margin-bottom: 14px;
             line-height: 1.5;
             display: flex;
@@ -321,56 +342,28 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 3px 8px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            padding: 3px 9px;
             border-radius: var(--radius-sm);
             font-size: 11.5px;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
-        /* Post Editorial Body Preview */
+        /* Editorial Text Box */
         .editorial-content-box {
-            background: #090e17;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: var(--bg-editorial);
+            border: 1px solid var(--border-subtle);
             border-radius: var(--radius-md);
-            padding: 16px 18px;
-            color: #e2e8f0;
+            padding: 18px 20px;
+            color: var(--text-primary);
             font-size: 14px;
-            line-height: 1.68;
+            line-height: 1.72;
             white-space: pre-wrap;
             word-break: break-word;
             margin-bottom: 16px;
         }
-
-        .editorial-author-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .author-thumb {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: #1e293b;
-            border: 1px solid #334155;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-            color: #60a5fa;
-        }
-
-        .author-details {
-            font-size: 12px;
-            line-height: 1.3;
-        }
-        .author-name { font-weight: 700; color: #fff; }
-        .author-sub { color: var(--text-tertiary); font-size: 11px; }
 
         /* Action Buttons Row */
         .button-action-row {
@@ -400,33 +393,30 @@
             stroke-width: 2.2px;
         }
 
-        .btn-primary {
-            background: var(--brand-primary);
-            color: #ffffff;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-primary:active {
-            transform: scale(0.98);
-            background: var(--brand-primary-light);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border-subtle);
-            color: #cbd5e1;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-        }
-
         .btn-emerald {
-            background: var(--accent-emerald);
-            color: #022c22;
-            font-weight: 700;
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+            background: var(--brand-emerald);
+            color: #ffffff;
+            box-shadow: var(--shadow-btn);
+        }
+
+        .btn-emerald:hover {
+            background: var(--brand-emerald-hover);
+        }
+
+        .btn-emerald:active {
+            transform: scale(0.98);
+        }
+
+        .btn-outline {
+            background: #ffffff;
+            border: 1px solid var(--border-medium);
+            color: var(--text-secondary);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+            background: var(--bg-elevated);
         }
 
         /* Form Controls */
@@ -441,19 +431,19 @@
 
         .form-select, .form-input {
             width: 100%;
-            background: #090e17;
-            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            border: 1px solid var(--border-medium);
             border-radius: var(--radius-md);
-            color: #ffffff;
+            color: var(--text-primary);
             padding: 11px 14px;
             font-size: 13.5px;
             outline: none;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
         .form-select:focus, .form-input:focus {
-            border-color: var(--brand-primary-light);
-            box-shadow: 0 0 0 2px var(--brand-primary-glow);
+            border-color: var(--brand-emerald);
+            box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.12);
         }
 
         .char-counter {
@@ -461,8 +451,8 @@
             font-family: 'JetBrains Mono', monospace;
             text-align: right;
             margin-top: 5px;
-            color: var(--accent-emerald);
-            font-weight: 500;
+            color: var(--brand-emerald);
+            font-weight: 600;
         }
 
         /* Print One-Pager Stylesheet */
@@ -472,7 +462,7 @@
                 color: #000000 !important;
                 padding: 0 !important;
             }
-            header, .nav-tabs, .tab-bar-card, .bottom-nav, .ribbon-wrapper, .button-action-row, .btn-action, .toast {
+            header, .nav-tabs, .tab-bar-card, .bottom-nav, .ribbon-wrapper, .button-action-row, .btn-action, .toast-pill {
                 display: none !important;
             }
             .container {
@@ -482,10 +472,10 @@
             .tab-pane {
                 display: none !important;
             }
-            #tab-artifacts {
+            #pane-artifacts {
                 display: block !important;
             }
-            .glass-card {
+            .prosperity-card {
                 background: none !important;
                 border: none !important;
                 box-shadow: none !important;
@@ -494,7 +484,7 @@
             .editorial-content-box {
                 background: none !important;
                 border: none !important;
-                color: #111827 !important;
+                color: #0f172a !important;
                 font-size: 11.5pt !important;
                 line-height: 1.5 !important;
                 padding: 0 !important;
@@ -507,13 +497,13 @@
             bottom: 84px;
             left: 50%;
             transform: translateX(-50%) translateY(25px);
-            background: #10b981;
-            color: #022c22;
+            background: var(--text-primary);
+            color: #ffffff;
             padding: 11px 22px;
             border-radius: 999px;
             font-size: 13.5px;
-            font-weight: 700;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             opacity: 0;
             pointer-events: none;
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -533,7 +523,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(10, 14, 26, 0.94);
+            background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-top: 1px solid var(--border-subtle);
@@ -541,12 +531,13 @@
             justify-content: space-around;
             padding: 8px 6px;
             z-index: 45;
+            box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.04);
         }
 
         .bottom-nav-item {
             background: transparent;
             border: none;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 10.5px;
             font-weight: 600;
             padding: 6px 10px;
@@ -562,11 +553,11 @@
         .bottom-nav-item svg {
             width: 19px;
             height: 19px;
-            stroke-width: 2px;
+            stroke-width: 2.1px;
         }
 
         .bottom-nav-item.active {
-            color: var(--brand-primary-light);
+            color: var(--brand-emerald);
         }
     </style>
 </head>
@@ -579,7 +570,7 @@
                 <div class="avatar-initials">RM</div>
                 <div class="brand-meta">
                     <h1>Ramu Munugoti</h1>
-                    <p>Program Director • Rural Livelihoods • CSR • Clean Tech</p>
+                    <p>Program Director • Clean Tech • Rural Livelihoods • CSR</p>
                 </div>
             </div>
             <div class="header-actions">
@@ -597,9 +588,9 @@
         <div class="ribbon-wrapper">
             <div class="ribbon-track">
                 <div class="metric-pill"><span class="dot"></span>₹45Cr+ Public Budget (100% Clean CAG Audit)</div>
-                <div class="metric-pill blue"><span class="dot"></span>45,000+ Livelihoods Certified</div>
+                <div class="metric-pill solar"><span class="dot"></span>45,000+ Livelihoods Certified</div>
                 <div class="metric-pill"><span class="dot"></span>50+ FPOs & 20,000+ Smallholders</div>
-                <div class="metric-pill blue"><span class="dot"></span>4.8x Audited SROI</div>
+                <div class="metric-pill solar"><span class="dot"></span>4.8x Audited SROI</div>
                 <div class="metric-pill"><span class="dot"></span>TISS Mumbai (M.A.) + B.Tech Mechanical</div>
             </div>
         </div>
@@ -635,12 +626,12 @@
         <!-- ==================== TAB 1: PIB RADAR ==================== -->
         <div id="pane-pib" class="tab-pane active">
             <!-- Alert 1 -->
-            <div class="glass-card">
+            <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
                         <h3>PM Surya Ghar: Feeder Headroom & DISCOM Synchronization</h3>
                     </div>
-                    <span class="tag-badge tag-purple">MNRE / Solar</span>
+                    <span class="tag-badge tag-solar">MNRE / Solar</span>
                 </div>
                 <div class="meta-context">
                     <span class="meta-tag">🏛️ Official Source: PIB Delhi / MNRE</span>
@@ -670,7 +661,7 @@ To solar EPCs and DISCOM engineers: what is your current turnaround time between
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                         1-Tap Copy
                     </button>
-                    <a href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" class="btn-action btn-secondary">
+                    <a href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" class="btn-action btn-outline">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                         Open in LinkedIn
                     </a>
@@ -678,12 +669,12 @@ To solar EPCs and DISCOM engineers: what is your current turnaround time between
             </div>
 
             <!-- Alert 2 -->
-            <div class="glass-card">
+            <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
                         <h3>MoSDE: 100% PFMS Compliance & Zero CAG Audit Flags</h3>
                     </div>
-                    <span class="tag-badge tag-blue">MoSDE / Governance</span>
+                    <span class="tag-badge tag-navy">MoSDE / Governance</span>
                 </div>
                 <div class="meta-context">
                     <span class="meta-tag">🏛️ Official Source: PIB Delhi / MoSDE</span>
@@ -709,7 +700,7 @@ Public programs succeed when fiduciary discipline matches ground-level empathy.
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                         1-Tap Copy
                     </button>
-                    <a href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" class="btn-action btn-secondary">
+                    <a href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" class="btn-action btn-outline">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                         Open in LinkedIn
                     </a>
@@ -720,7 +711,7 @@ Public programs succeed when fiduciary discipline matches ground-level empathy.
         <!-- ==================== TAB 2: FIELD POSTS ==================== -->
         <div id="pane-posts" class="tab-pane">
             <!-- Post 1 -->
-            <div class="glass-card">
+            <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
                         <h3>Why Most CSR Dashboards Hide the Real Story</h3>
@@ -759,7 +750,7 @@ Curious to hear from other CSR heads: how do you track candidate retention after
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                         1-Tap Copy
                     </button>
-                    <a href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" class="btn-action btn-secondary">
+                    <a href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" class="btn-action btn-outline">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                         Open in LinkedIn
                     </a>
@@ -767,12 +758,12 @@ Curious to hear from other CSR heads: how do you track candidate retention after
             </div>
 
             <!-- Post 2 -->
-            <div class="glass-card">
+            <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
                         <h3>What Running 50+ FPOs Taught Me About Rural Cashflows</h3>
                     </div>
-                    <span class="tag-badge tag-amber">Agribusiness</span>
+                    <span class="tag-badge tag-solar">Agribusiness</span>
                 </div>
                 <div class="meta-context">
                     <span class="meta-tag">📅 Wednesday 8:30 AM IST</span>
@@ -802,7 +793,7 @@ Has anyone else working with producer companies found a reliable way to solve th
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                         1-Tap Copy
                     </button>
-                    <a href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" class="btn-action btn-secondary">
+                    <a href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" class="btn-action btn-outline">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                         Open in LinkedIn
                     </a>
@@ -812,20 +803,20 @@ Has anyone else working with producer companies found a reliable way to solve th
 
         <!-- ==================== TAB 3: PROFILE & AVAILABILITY ==================== -->
         <div id="pane-profile" class="tab-pane">
-            <div class="glass-card" style="border-color: rgba(16, 185, 129, 0.35); background: rgba(16, 185, 129, 0.05);">
+            <div class="prosperity-card" style="border-color: var(--brand-emerald-border); background: var(--brand-emerald-light);">
                 <div class="card-title-group" style="margin-bottom: 6px;">
-                    <h3 style="color: #34d399;">Executive Availability Framing (Gap 3 Resolved)</h3>
+                    <h3 style="color: var(--brand-emerald);">Executive Availability Framing (Gap 3 Resolved)</h3>
                 </div>
-                <p style="font-size: 13px; color: #cbd5e1; line-height: 1.5;">This profile explicitly clarifies that while you run BSC Consulting as a practitioner sandbox, you are <strong>actively seeking and ready for direct appointment into Full-Time Senior Leadership, Chief of Party mandates, and Board Advisory roles</strong>.</p>
+                <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.55;">This profile explicitly clarifies that while you run BSC Consulting as a practitioner sandbox, you are <strong>actively seeking and ready for direct appointment into Full-Time Senior Leadership, Chief of Party mandates, and Board Advisory roles</strong>.</p>
             </div>
 
             <!-- Headline Card -->
-            <div class="glass-card">
+            <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
                         <h3>1. Optimized LinkedIn Headline</h3>
                     </div>
-                    <span class="tag-badge tag-blue">214 Chars (Max 220)</span>
+                    <span class="tag-badge tag-navy">214 Chars (Max 220)</span>
                 </div>
                 <div class="editorial-content-box" id="prof-headline">Program Director & Senior Operations Lead | Rural Livelihoods, FPO Federations & CSR | Ex-State Lead, NSDC (MoSDE) | ₹45Cr+ Public Budget (Zero Audit Flags) | TISS Mumbai (M.A. Governance) + B.Tech Mechanical</div>
                 <button class="btn-action btn-emerald" style="width: 100%;" onclick="copySnippet('prof-headline', 'Headline')">
@@ -835,7 +826,7 @@ Has anyone else working with producer companies found a reliable way to solve th
             </div>
 
             <!-- About Section Card -->
-            <div class="glass-card">
+            <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
                         <h3>2. About Summary with Explicit Availability Clause</h3>
@@ -864,7 +855,7 @@ I currently lead BSC Consulting as a practitioner sandbox for field pilots and a
 
 Available for immediate domestic (Pan-India) and international expatriate appointments.
 Direct Inquiries: ramu.munugoti@bsctech.in | Hyderabad, Telangana</div>
-                <button class="btn-action btn-primary" style="width: 100%;" onclick="copySnippet('prof-about', 'About Section')">
+                <button class="btn-action btn-outline" style="width: 100%; border-color: var(--brand-emerald); color: var(--brand-emerald);" onclick="copySnippet('prof-about', 'About Section')">
                     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                     Copy About Section
                 </button>
@@ -873,12 +864,12 @@ Direct Inquiries: ramu.munugoti@bsctech.in | Hyderabad, Telangana</div>
 
         <!-- ==================== TAB 4: INSTITUTIONAL MESSAGES ==================== -->
         <div id="pane-outreach" class="tab-pane">
-            <div class="glass-card">
+            <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
                         <h3>Personalized Peer Outreach Generator</h3>
                     </div>
-                    <span class="tag-badge tag-purple">Under 300 Chars</span>
+                    <span class="tag-badge tag-solar">Under 300 Chars</span>
                 </div>
                 <div class="meta-context">
                     <span>Includes dedicated channels for UNDP, UKWDP, Uttarakhand Skill Department (UKSDM), and TISS Alumni.</span>
@@ -908,7 +899,7 @@ Direct Inquiries: ramu.munugoti@bsctech.in | Hyderabad, Telangana</div>
                 </div>
 
                 <label class="form-label" style="margin-top: 14px;">Live Preview (Optimized for LinkedIn Mobile App):</label>
-                <div class="editorial-content-box" id="note-preview-text" style="font-size: 13.5px; padding: 12px 14px;"></div>
+                <div class="editorial-content-box" id="note-preview-text" style="font-size: 13.5px; padding: 14px 16px;"></div>
                 <div class="char-counter" id="note-char-count">245 / 300 characters</div>
 
                 <button class="btn-action btn-emerald" style="width: 100%; margin-top: 12px;" onclick="copySnippet('note-preview-text', 'Connection Note')">
@@ -920,7 +911,7 @@ Direct Inquiries: ramu.munugoti@bsctech.in | Hyderabad, Telangana</div>
 
         <!-- ==================== TAB 5: FEATURED ONE-PAGER BIO ==================== -->
         <div id="pane-artifacts" class="tab-pane">
-            <div class="glass-card">
+            <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
                         <h3>Executive Briefing & Key Personnel One-Pager</h3>
@@ -930,7 +921,7 @@ Direct Inquiries: ramu.munugoti@bsctech.in | Hyderabad, Telangana</div>
                 <div class="meta-context">
                     <span>Formatted strictly for Boardroom Reviews, Multilateral Bids (USAID/World Bank), and CPSE E-7/E-8 Tracks.</span>
                 </div>
-                <div class="editorial-content-box" id="onepager-text" style="font-size: 13px; line-height: 1.6;">RAMU MUNUGOTI
+                <div class="editorial-content-box" id="onepager-text" style="font-size: 13.5px; line-height: 1.68;">RAMU MUNUGOTI
 Senior Executive | Program Director | Chief of Party | Public Systems Leader
 Hyderabad, Telangana, India | Open to Pan-India & Global Deployments
 Contact: ramu.munugoti@bsctech.in | linkedin.com/in/ramumunugoti
@@ -956,7 +947,7 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                         Copy Bio Text
                     </button>
-                    <button class="btn-action btn-secondary" onclick="window.print()">
+                    <button class="btn-action btn-outline" onclick="window.print()">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                         Print / Save PDF
                     </button>
@@ -966,17 +957,17 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
 
         <!-- ==================== TAB 6: PLAYBOOK ==================== -->
         <div id="pane-playbook" class="tab-pane">
-            <div class="glass-card">
+            <div class="prosperity-card">
                 <div class="card-header-bar">
                     <div class="card-title-group">
                         <h3>The Real-World 3-Horizon Recruitment Playbook</h3>
                     </div>
-                    <span class="tag-badge tag-blue">Executive Strategy</span>
+                    <span class="tag-badge tag-navy">Executive Strategy</span>
                 </div>
-                <div class="editorial-content-box" style="font-size: 13.5px; line-height: 1.68;">
-                    <p style="margin-bottom: 12px;"><strong style="color: #60a5fa;">How We Neutralize Favoritism & Closed Networks:</strong></p>
+                <div class="editorial-content-box" style="font-size: 13.5px; line-height: 1.72;">
+                    <p style="margin-bottom: 12px;"><strong style="color: var(--accent-navy);">How We Neutralize Favoritism & Closed Networks:</strong></p>
                     <p style="margin-bottom: 12px;">In India, top apex board seats (Managing Director, Country Head) are often decided behind closed doors through personal networks. If you wait solely for those, you risk losing months.</p>
-                    <p style="margin-bottom: 12px;"><strong style="color: #34d399;">The 3-Horizon Strategy:</strong></p>
+                    <p style="margin-bottom: 12px;"><strong style="color: var(--brand-emerald);">The 3-Horizon Strategy:</strong></p>
                     <ul style="padding-left: 20px; margin-bottom: 14px;">
                         <li style="margin-bottom: 10px;"><strong>Horizon 1: Senior Operations & Program Management (Quick Hiring, Zero Politics):</strong> Large donor or government projects <em>cannot</em> hire unqualified favorites—they desperately need proven operators who actually know how to work with District Collectors, set up ODK telemetry, and pass CAG audits. These roles pay very well (₹25L–₹45L+) and put you right inside the leadership table.</li>
                         <li style="margin-bottom: 10px;"><strong>Horizon 2: Advisory Retainers:</strong> SROI evaluations, FPO turnaround plans, solar feasibility studies. Contracted directly on deliverables without HR committee politics.</li>
@@ -1110,7 +1101,7 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
             const counter = document.getElementById('note-char-count');
             previewBox.innerText = text;
             counter.innerText = `${text.length} / 300 characters`;
-            counter.style.color = text.length > 300 ? '#ef4444' : '#10b981';
+            counter.style.color = text.length > 300 ? '#dc2626' : '#065f46';
         }
 
         // Initialize live generator
