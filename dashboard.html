@@ -2,246 +2,713 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramu Munugoti — LinkedIn Executive Authority Desk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ramu Munugoti — Executive Desk</title>
+    <meta name="description" content="Human, grounded executive toolkit for Ramu Munugoti. 1-tap copy for LinkedIn profile, real field posts, peer messages, and strategy.">
+    
     <style>
         :root {
-            --bg: #0b132b;
-            --surface: #1c2541;
-            --surface-hover: #263359;
-            --primary: #3a86ff;
-            --accent: #10b981;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #334155;
-            --card-radius: 12px;
+            --bg-primary: #0b0f19;
+            --bg-card: #151d2e;
+            --border: #243247;
+            --text-main: #f1f5f9;
+            --text-muted: #8e9fb5;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent-green: #059669;
+            --radius: 12px;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        body { background: var(--bg); color: var(--text-main); min-height: 100vh; padding: 32px 20px; }
-        .container { max-width: 1080px; margin: 0 auto; }
-        header { margin-bottom: 32px; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
-        h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-        .subtitle { font-size: 15px; color: var(--text-muted); }
-        .badge-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
-        .badge { background: rgba(58, 134, 255, 0.15); color: #60a5fa; border: 1px solid rgba(58, 134, 255, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
-        .badge.green { background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.3); }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 24px; margin-top: 24px; }
-        .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 22px; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
-        .card-title { font-size: 17px; font-weight: 600; color: #fff; }
-        .card-tag { font-size: 12px; color: var(--accent); font-weight: 600; }
-        .meta-info { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
-        
-        .post-body { background: #0f172a; border: 1px solid var(--border); border-radius: 8px; padding: 14px; color: #cbd5e1; font-size: 13.5px; line-height: 1.6; white-space: pre-wrap; margin-bottom: 16px; max-height: 280px; overflow-y: auto; }
-        .btn-copy { background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; align-self: flex-start; }
-        .btn-copy:hover { background: #2563eb; transform: translateY(-1px); }
-        .btn-copy:active { transform: translateY(0); }
 
-        .outbound-section { margin-top: 48px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius); padding: 24px; }
-        .outbound-title { font-size: 18px; font-weight: 600; margin-bottom: 14px; }
-        .outbound-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 16px; }
-        .outbound-box { background: #0f172a; border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
-        .outbound-box h4 { color: #60a5fa; font-size: 14px; margin-bottom: 8px; }
-        .outbound-text { font-size: 12.5px; color: #cbd5e1; line-height: 1.5; margin-bottom: 12px; }
-        .copied-toast { display: none; position: fixed; bottom: 20px; right: 20px; background: var(--accent); color: #042f2e; padding: 10px 18px; border-radius: 6px; font-weight: 700; font-size: 13px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(11, 15, 25, 0.94);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 18px;
+        }
+
+        .header-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .brand-sub {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 6px;
+            background: #111827;
+            padding: 5px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 100px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 9px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .tag {
+            font-size: 11px;
+            color: #60a5fa;
+            background: rgba(37, 99, 235, 0.15);
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .card-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .text-box {
+            background: #080c14;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 14px;
+            color: #d1d5db;
+            font-size: 13.5px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin-bottom: 12px;
+            max-height: 380px;
+            overflow-y: auto;
+        }
+
+        .btn-copy {
+            width: 100%;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 11px 16px;
+            font-size: 13.5px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-copy:active {
+            background: var(--primary-hover);
+            transform: scale(0.99);
+        }
+        .btn-copy.green {
+            background: var(--accent-green);
+        }
+
+        /* Outbound Inputs */
+        .form-row {
+            margin-bottom: 12px;
+        }
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+        .form-input, .form-select {
+            width: 100%;
+            background: #080c14;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            color: #fff;
+            padding: 10px 12px;
+            font-size: 13.5px;
+            outline: none;
+        }
+        .form-input:focus, .form-select:focus {
+            border-color: var(--primary);
+        }
+        .char-tag {
+            font-size: 11.5px;
+            color: #10b981;
+            text-align: right;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(17, 24, 39, 0.96);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            padding: 7px 4px;
+            z-index: 40;
+        }
+        .b-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 10.5px;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+        .b-btn.active {
+            color: #60a5fa;
+        }
+        .b-icon { font-size: 17px; }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #10b981;
+            color: #022c22;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 13.5px;
+            font-weight: 700;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            z-index: 100;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
     </style>
 </head>
 <body>
+
+    <header>
+        <div class="header-inner">
+            <div>
+                <div class="brand-name">Ramu Munugoti</div>
+                <div class="brand-sub">Field Leadership • Rural Livelihoods • CSR • Clean Tech</div>
+            </div>
+            <a href="https://www.linkedin.com/in/ramumunugoti/" target="_blank" style="text-decoration:none;">
+                <span class="tag">Open LinkedIn ↗</span>
+            </a>
+        </div>
+    </header>
+
     <div class="container">
-        <header>
-            <h1>Ramu Munugoti — LinkedIn Authority Desk</h1>
-            <div class="subtitle">Omni-Sector Program Director & Public Systems Executive (Rural Livelihoods | CSR | Public Policy | Clean Tech)</div>
-            <div class="badge-row">
-                <span class="badge green">₹45Cr+ Public Budget (100% CAG Clearance)</span>
-                <span class="badge">45,000+ Livelihoods Certified</span>
-                <span class="badge">50+ FPOs & 20,000+ Farmers</span>
-                <span class="badge green">4.8x Audited SROI</span>
-                <span class="badge">TISS Mumbai (M.A.) + B.Tech Mechanical</span>
-            </div>
-        </header>
 
-        <h2 style="font-size: 19px; font-weight: 600; color: #f1f5f9;">Weekly Post Queue (4 Strategic Pillars)</h2>
-        <div class="grid">
-
-            <div class="card">
-                <div>
-                    <div class="card-header">
-                        <div class="card-title">Post 1: Corporate Social Responsibility (CSR) & 4.8x SROI Governance</div>
-                    </div>
-                    <div class="meta-info">
-                        <strong>Slot:</strong> Tuesday 8:30 AM IST &nbsp;|&nbsp; <strong>Target:</strong> Corporate Boards, CSR Committee Chairs, Philanthropic Heads, ESG Investors
-                    </div>
-                    <div class="post-body" id="post-1">In the CSR and development sector, there is a dangerous vanity metric that too many boards still settle for:
-
-"Number of beneficiaries reached."
-
-Reaching a beneficiary is an input. It is not an outcome. And it certainly isn't impact.
-
-Over the past decade managing public and corporate allocations exceeding ₹45 Crores, here is the framework we used to transition from superficial reach to an audited 4.8x Social Return on Investment (SROI):
-
-1. The "Zero-Phantom" Rule:
-If a beneficiary’s participation cannot be verified through Aadhaar-enabled telemetry or GPS-tagged field data (ODK/KoboToolbox), it does not enter our reporting dashboard. Paper attendance registers belong in the 1990s.
-
-2. Economic Self-Sufficiency over One-Time Handouts:
-Providing a subsidised asset (like a solar micro-irrigation pump or vocational certificate) is only stage one. True ROI is measured 12 months later: Did net household income rise? Did local mandi price realization improve?
-
-3. Total Audit Transparency:
-Public and corporate capital demands the same fiduciary precision as institutional equity. Across 5 years of central skilling operations across 33 districts, maintaining 100% clean Comptroller & Auditor General (CAG) clearance required treating every rupee as an investment with an auditable milestone.
-
-Corporate boards don’t need more glossy brochures with smiling faces. They need rigorous, quantifiable, data-backed social impact.
-
-How does your organization audit long-term social return on investment? Let's discuss in the comments.
-
-#CSR #SocialImpact #SROI #PublicPolicy #Governance #RamuMunugoti</div>
-                </div>
-                <button class="btn-copy" onclick="copyPost('post-1')">📋 1-Click Copy Post 1</button>
-            </div>
-        
-            <div class="card">
-                <div>
-                    <div class="card-header">
-                        <div class="card-title">Post 2: Rural Livelihoods, Agribusiness & FPO Federations</div>
-                    </div>
-                    <div class="meta-info">
-                        <strong>Slot:</strong> Wednesday 8:30 AM IST &nbsp;|&nbsp; <strong>Target:</strong> NABARD, SFAC, World Bank, Agribusiness CEOs, Livelihood Mission Heads
-                    </div>
-                    <div class="post-body" id="post-2">Federating 50+ Farmer Producer Organizations (FPOs) across 59 districts taught me one brutal truth:
-
-An FPO is not a charity. It is a commercial rural enterprise.
-
-When government schemes or donor funds treat FPOs as passive subsidy recipients, they collapse the moment working capital support expires.
-
-To deliver a sustained 24% increase in net farmer price realization across 20,000+ farm holdings, we enforced three non-negotiable operational principles:
-
-1. Commodity Aggregation Before Market Entry:
-Individual smallholders holding 1-2 acres have zero bargaining power with large institutional buyers. Clustered aggregation at the mandal and district level created bulk volumes that bypassed predatory middlemen.
-
-2. Infrastructure Sizing (Hardware Reality):
-You cannot scale horticultural value chains without cold-chain storage and primary grading assets. As a mechanical engineer, I worked directly on sizing decentralized solar cold rooms and micro-irrigation pumps to ensure the machinery matched local power availability and crop harvest cycles.
-
-3. Institutional Credit Linkages:
-FPOs need timely credit lines for harvest-season procurement. Building formal balance sheets and credit histories unlocked institutional financing from NABARD and regional commercial banks, replacing informal high-interest debt.
-
-Rural development doesn't happen through theoretical workshops. It happens through cold-chain logistics, balance-sheet discipline, and fair market access.
-
-What is the single biggest operational bottleneck your agribusiness teams face in field aggregation?
-
-#RuralDevelopment #Agribusiness #FPO #Livelihoods #SupplyChain #Agriculture #RamuMunugoti</div>
-                </div>
-                <button class="btn-copy" onclick="copyPost('post-2')">📋 1-Click Copy Post 2</button>
-            </div>
-        
-            <div class="card">
-                <div>
-                    <div class="card-header">
-                        <div class="card-title">Post 3: Public Policy Formulation & Government Systems Convergence</div>
-                    </div>
-                    <div class="meta-info">
-                        <strong>Slot:</strong> Thursday 8:30 AM IST &nbsp;|&nbsp; <strong>Target:</strong> NITI Aayog, Central Line Ministries, State Principal Secretaries, Multilateral Heads
-                    </div>
-                    <div class="post-body" id="post-3">There is a myth in public administration that speed and statutory compliance cannot co-exist.
-
-"If you follow every rule, the scheme moves at a snail's pace. If you move fast, you risk audit queries."
-
-This is a false trade-off.
-
-Having operated 124+ continuous months in post-Master's governance roles across 59 districts, here is the secret to high-velocity, audit-proof execution:
-
-• Standardized Digital Inspection Telemetry:
-Replace multi-page subjective inspection reports with timestamped, geofenced mobile workflows (ODK / KoboToolbox). 
-
-• Parallel Multi-Tier Approvals:
-Run technical feasibility, financial vetting, and administrative sanction in synchronized parallel tracks rather than sequential serial handoffs.
-
-• Transparent Partner Scorecards:
-Publish monthly performance rankings of all operational partners publicly. Transparency is the single greatest deterrent to compliance slippage.
-
-When public systems are built with engineering precision, they deliver speed AND integrity.
-
-#PublicPolicy #Governance #GoodGovernance #SystemsThinking #Leadership</div>
-                </div>
-                <button class="btn-copy" onclick="copyPost('post-3')">📋 1-Click Copy Post 3</button>
-            </div>
-        
-            <div class="card">
-                <div>
-                    <div class="card-header">
-                        <div class="card-title">Post 4: Clean Energy (Solar/PM Surya Ghar) & Applied AI Telemetry</div>
-                    </div>
-                    <div class="meta-info">
-                        <strong>Slot:</strong> Saturday 11:00 AM IST &nbsp;|&nbsp; <strong>Target:</strong> Renewable Energy Executives, Cleantech Investors, International Solar Alliance, Operations Leaders
-                    </div>
-                    <div class="post-body" id="post-4">The biggest misconception about PM Surya Ghar (Muft Bijli Yojana) is that customer acquisition is the bottleneck.
-
-It isn't. The bottleneck is the "last-mile grid friction."
-
-Over the past decade working across public systems and clean-tech infrastructure, I’ve seen ambitious schemes encounter the same ground realities:
-
-1. Feeder & Transformer Headroom:
-Rooftops are ready to install, but local distribution transformers in semi-urban and rural feeders quickly hit saturation limits. Without real-time feeder telemetry, grid stability becomes a genuine risk.
-
-2. Metering & DISCOM Interconnect Latency:
-A 3kW or 5kW system gets physically installed in 48 hours. But the bi-directional net meter inspection, testing, and synchronization with the utility billing portal can take weeks without standardized digital workflows.
-
-3. Working Capital Cycles for Regional EPCs:
-Local solar installers operate on thin margins. When subsidy disbursement pipelines experience verification delays, installer cash flows choke, slowing down deployment velocity across the district.
-
-India's target of 1 crore solar rooftops is one of the most visionary energy decentralization policies in the world.
-
-To achieve it at population scale, we don't just need more solar panels; we need systems engineering:
-→ Automated, paperless DISCOM grid-sync approvals
-→ Predictive feeder load modeling
-→ Standardized digital inspection telemetry
-
-Scale isn’t built on enthusiasm. It is built on unglamorous, precision systems execution.
-
-What is the biggest operational hurdle you are witnessing in the rooftop solar roll-out? Let's discuss in the comments.
-
-#SolarEnergy #PMSuryaGhar #CleanEnergy #RenewableEnergy #EnergyTransition #PublicPolicy #RamuMunugoti</div>
-                </div>
-                <button class="btn-copy" onclick="copyPost('post-4')">📋 1-Click Copy Post 4</button>
-            </div>
-        
+        <!-- Top Nav -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="goTab('posts')">✍️ Field Posts</button>
+            <button class="tab-btn" onclick="goTab('profile')">👤 Profile</button>
+            <button class="tab-btn" onclick="goTab('outbound')">🎯 Messages</button>
+            <button class="tab-btn" onclick="goTab('comments')">💬 Comments</button>
+            <button class="tab-btn" onclick="goTab('playbook')">🧭 Playbook</button>
         </div>
 
-        <div class="outbound-section">
-            <div class="outbound-title">Direct Outbound Pipeline (High-Converting Connection Notes)</div>
-            <div class="subtitle">Use these tailored notes (under 300 characters) when connecting with target decision-makers:</div>
-            
-            <div class="outbound-grid">
-                <div class="outbound-box">
-                    <h4>Move B: Heads of CSR & Foundation Leaders</h4>
-                    <div class="outbound-text" id="note-csr">Hi Target, following your impact work at Tata Trusts / Adani Foundation. Over the last decade managing ₹45Cr+ in public & CSR allocations (TISS M.A. + B.Tech), we've focused on 4.8x verified SROI and telemetry across 59 districts. Would value connecting with a fellow sector leader.</div>
-                    <button class="btn-copy" onclick="copyPost('note-csr')">Copy CSR Note</button>
+        <!-- TAB 1: FIELD POSTS (Human, Candid, Anecdote-Driven) -->
+        <div id="tab-posts" class="tab-pane active">
+
+            <!-- Post 1 -->
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">1. Why Most CSR Dashboards Hide the Real Story</div>
+                    <span class="tag">CSR & SROI</span>
                 </div>
-                
-                <div class="outbound-box">
-                    <h4>Move A: Multilateral & USAID Proposal Leads</h4>
-                    <div class="outbound-text" id="note-multi">Hi Mission, appreciate your leadership on USAID / World Bank's development portfolio. With 124+ months unbroken post-PG leadership (TISS Mumbai + B.Tech) across 50+ FPOs & 45K livelihoods, I frequently advise on large-scale field delivery. Would value connecting.</div>
-                    <button class="btn-copy" onclick="copyPost('note-multi')">Copy Multilateral Note</button>
+                <div class="card-desc">Suggested day: Tuesday morning. Speaks directly to corporate board members, CSR directors, and foundations.</div>
+                <div class="text-box" id="p1">Whenever I review CSR impact presentations, I look for one specific slide:
+
+What happened to the beneficiaries 12 months after the funding ended?
+
+Most of the time, that slide doesn't exist. Instead, you get big numbers: "5,000 youth trained" or "2,000 women mobilised." 
+
+That tells you money was spent. It doesn't tell you if anybody's life actually changed.
+
+During my five years handling state operations at NSDC, we managed over ₹45 Crores in public skilling funds across 33 districts. The biggest lesson wasn't about mobilization; it was about follow-through.
+
+We put three practical rules in place:
+
+First, we stopped accepting paper attendance. If a student wasn't clocking in through biometric attendance, the training partner didn't get reimbursed. It sounded harsh to some providers, but it wiped out ghost candidates overnight.
+
+Second, we stopped funding courses without pre-signed industry placement agreements. If local employers hadn't committed to hiring at least 70% of the batch, the batch didn't start.
+
+Third, in our recent work with 50+ Farmer Producer Organizations in Telangana and Andhra, we measured social return on investment (SROI) by checking farmer price realization at the local mandi 12 months later. We saw an audited 24% price jump because we linked them directly to bulk buyers and decentralized cold rooms.
+
+Real impact is unglamorous. It lives in attendance logs, cold storage maintenance, and bank transaction statements.
+
+If your CSR reports don't track what happens 12 months post-intervention, you aren't measuring impact—you're just measuring disbursement.
+
+Curious to hear from other CSR heads: how do you track candidate retention after year one?</div>
+                <button class="btn-copy green" onclick="copy('p1', 'Post 1')">📋 Copy Post 1 to Clipboard</button>
+            </div>
+
+            <!-- Post 2 -->
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">2. What Running 50+ FPOs Taught Me About Rural Cashflows</div>
+                    <span class="tag">Agribusiness</span>
                 </div>
-                
-                <div class="outbound-box">
-                    <h4>Clean Tech & Solar Energy Executives</h4>
-                    <div class="outbound-text" id="note-solar">Hi Chief, following Tata Power Solar / Clean Energy's clean energy footprint. As a mechanical engineer & public systems lead working on PM Surya Ghar and rural decentralized infrastructure, I follow your updates with great interest. Would value connecting as peers.</div>
-                    <button class="btn-copy" onclick="copyPost('note-solar')">Copy CleanTech Note</button>
+                <div class="card-desc">Suggested day: Wednesday morning. Targets NABARD, agribusiness heads, and rural development teams.</div>
+                <div class="text-box" id="p2">A lot of people think farmer producer companies (FPOs) fail because farmers don't want to cooperate.
+
+That hasn't been my experience on the ground.
+
+Working across 50+ FPOs and 20,000+ farmers in Andhra Pradesh and Telangana, the single biggest reason an FPO stalls in its second year is simple: working capital timing.
+
+A smallholder farmer with two acres cannot wait three weeks for an institutional buyer to reconcile an invoice and release NEFT payments. They have immediate diesel expenses, fertilizer dues, and household needs. If the FPO cannot pay on the day of harvest, the farmer will sell to the local mandi trader at a 15% discount just to get cash in hand.
+
+To fix this, we stopped treating FPOs like social projects and started running them like supply chain businesses:
+
+1. We clustered smallholder produce at the mandal level to build bulk volumes that large food processors couldn't ignore.
+2. We sized decentralized solar cold rooms so farmers weren't forced to distress-sell perishable produce on day one.
+3. We set up working capital credit lines with NABARD and regional banks backed by warehouse receipts, so the FPO could pay farmers within 48 hours.
+
+The result was a verified 24% increase in what farmers actually took home.
+
+An FPO is not a charity. It's a rural enterprise. If you don't solve the farmer's day-one cashflow, no amount of training workshops will keep the company alive.
+
+Has anyone else working with producer companies found a reliable way to solve the harvest-week working capital gap?</div>
+                <button class="btn-copy" onclick="copy('p2', 'Post 2')">📋 Copy Post 2 to Clipboard</button>
+            </div>
+
+            <!-- Post 3 -->
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">3. Managing ₹45 Crores of Public Funds with Zero Audit Flags</div>
+                    <span class="tag">Governance</span>
+                </div>
+                <div class="card-desc">Suggested day: Thursday morning. Signals rock-solid integrity to government committees, CPSEs, and donor boards.</div>
+                <div class="text-box" id="p3">There's an old assumption in public administration that you have to choose between speed and audit compliance.
+
+"If you follow every rule, work stalls. If you move fast, you'll get CAG audit queries."
+
+I don't buy that.
+
+Over 5 years heading state operations for central skilling schemes (PMKVY, DDU-GKY) under MoSDE, our office handled ₹45+ Crores across 33 districts. When the Comptroller & Auditor General (CAG) and statutory auditors conducted their reviews, we had zero adverse remarks or financial disallowances.
+
+We didn't achieve that by slowing down. We certified over 45,000 candidates.
+
+What made the difference was setting up clean systems early:
+
+1. Daily PFMS Tracking: We treated the Public Financial Management System not as a year-end compliance headache, but as our daily operational compass. Every disbursement was mapped to verified milestones.
+2. Field Telemetry: We replaced paper inspection sheets with geotagged mobile reports. You couldn't fake an inspection because the photos had embedded timestamps and coordinates.
+3. Quick Action on Violations: When center inspections revealed proxy attendances, we didn't look away. Over five years, we terminated six non-compliant training centers. When word got out that standards were non-negotiable, compliance improved across the entire state.
+4. Focus on Remote Blocks: We focused our mobilization on tribal and aspirational districts like Dungarpur and Baran, lifting female participation in technical courses by 13%.
+
+Public systems don't fail because people don't care. They fail when reporting latency lets leakages compound over months.
+
+Clean data and field discipline are the best protection any public program can have.</div>
+                <button class="btn-copy" onclick="copy('p3', 'Post 3')">📋 Copy Post 3 to Clipboard</button>
+            </div>
+
+            <!-- Post 4 -->
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">4. The Real Bottleneck in Rooftop Solar Isn't Demand</div>
+                    <span class="tag">Clean Energy</span>
+                </div>
+                <div class="card-desc">Suggested day: Saturday morning. Speaks to solar developers, DISCOMs, and renewable leaders.</div>
+                <div class="text-box" id="p4">With PM Surya Ghar (Muft Bijli Yojana), everyone is talking about rooftop acquisition and consumer subsidies.
+
+Those are important, but they aren't where the project actually gets stuck.
+
+As a mechanical engineer who has spent years on decentralized energy and rural systems, here is where solar installations actually stall on the ground:
+
+1. Distribution Transformer Headroom:
+You can sign up 50 homes on a residential street in a few days. But if the local 100 kVA or 250 kVA transformer is already running near peak load, injecting reverse solar power during afternoon hours can cause voltage fluctuations. Without transformer load mapping, the local feeder simply cannot take the capacity.
+
+2. Net-Meter Inspection Queues:
+The physical installation of solar panels takes about two days. But getting the DISCOM's junior engineer to inspect the site, swap the existing meter for a bi-directional meter, and sync it with utility billing can take weeks. That's cashflow sitting idle on the installer's books.
+
+3. Sizing vs Water Table Reality (in Rural Ag Pumping):
+On the farm side, I've seen multiple 3HP and 5HP solar micro-irrigation pumps underperform simply because they were installed without accounting for seasonal water table drop during March-May. Hardware sizing has to match the hydrologic reality, not just the tender document.
+
+PM Surya Ghar is one of the most ambitious energy decentralization programs anywhere.
+
+If we want to hit the one-crore rooftop goal smoothly, the focus needs to shift toward paperless utility interconnects and feeder-level telemetry.
+
+To the solar installers and engineers here: what is your current turnaround time between physical panel mounting and net-meter commissioning?</div>
+                <button class="btn-copy" onclick="copy('p4', 'Post 4')">📋 Copy Post 4 to Clipboard</button>
+            </div>
+
+        </div>
+
+        <!-- TAB 2: PROFILE (Clean, Credible, Zero Fluff) -->
+        <div id="tab-profile" class="tab-pane">
+
+            <!-- Headline -->
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">1. Your LinkedIn Headline</div>
+                    <span class="tag">214 Chars</span>
+                </div>
+                <div class="card-desc">Paste directly into your LinkedIn Headline. Clean, human, highly searchable for leadership roles.</div>
+                <div class="text-box" id="h-head">Program Director & Senior Operations Lead | Rural Livelihoods, FPO Federations & CSR | Ex-State Lead, NSDC (MoSDE) | ₹45Cr+ Public Budget (Zero Audit Flags) | TISS Mumbai (M.A. Governance) + B.Tech Mechanical</div>
+                <button class="btn-copy green" onclick="copy('h-head', 'Headline')">📋 Copy Headline</button>
+            </div>
+
+            <!-- About Section -->
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">2. About Section (Authentic Narrative)</div>
+                    <span class="tag">Executive Story</span>
+                </div>
+                <div class="card-desc">Conversational, grounded, confident. Explains why an engineer with a TISS Master's solves tough execution problems.</div>
+                <div class="text-box" id="h-about">Over the last 15 years, my career has been split across two worlds that rarely talk to each other: engineering systems and grassroots public administration.
+
+I started out with a B.Tech in Mechanical Engineering, learning how hardware, hydraulics, and physical plant machinery operate. Later, I completed my M.A. in Rural Development & Governance from the Tata Institute of Social Sciences (TISS, Mumbai) to understand how government policies, Panchayati Raj institutions, and district collectors actually make decisions.
+
+That combination has shaped how I lead large-scale programs: I treat social schemes and rural interventions with the same precision, data telemetry, and financial discipline as an engineering project.
+
+Key milestones from my work:
+
+• Public Sector Stewardship: As State Head with the National Skill Development Corporation (NSDC, MoSDE), I managed state-level operations across 33 District Skill Committees, stewarding ₹45+ Crores ($5.5M+) in public budgets with a 100% clean CAG audit record and zero PFMS disallowances over 5 years.
+• Livelihoods at Scale: Certified and transitioned 45,000+ candidates into formal industry roles, while lifting female technical participation by 13 percentage points in aspirational districts.
+• FPO Federations & Agribusiness: Currently working across 59 districts of Telangana and Andhra Pradesh, federating 50+ Farmer Producer Organizations (20,000+ smallholder farmers) and achieving a verified 24% increase in net farmer price realization through commodity aggregation and decentralized cold chains.
+• CSR & SROI Governance: Advised corporate donors on deploying social capital with an audited 4.8x Social Return on Investment (SROI), replacing paper reporting with mobile telemetry (ODK/Kobo) to ensure zero phantom beneficiaries.
+• Technical Credentials: IBM Certified Data Analyst (Python, SQL) and Google PMP.
+
+Whether it is setting up decentralized solar irrigation, structuring working capital for rural producer companies, or managing multi-district government programs, I focus on unglamorous, audit-proof delivery that works on the ground.
+
+Open to Senior Operations Leadership, Program Director, Practice Lead, and Advisory mandates across India and internationally.
+
+Contact: Hyderabad, Telangana | Open to domestic and global assignments.</div>
+                <button class="btn-copy" onclick="copy('h-about', 'About Section')">📋 Copy About Section</button>
+            </div>
+
+            <!-- Experience 1 -->
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">3. Experience: Consortium Lead & Executive Director (2021 – Present)</div>
+                    <span class="tag">Current</span>
+                </div>
+                <div class="text-box" id="h-exp1">Leading program delivery and institutional strategy for a rural development and clean-tech consortium covering 59 districts across Telangana (33 districts) and Andhra Pradesh (26 districts).
+
+Key Work & Results:
+• Built aggregation and market linkage frameworks across 50+ Farmer Producer Organizations (FPOs) representing 20,000+ smallholder farming families, resulting in an audited 24% increase in net farmer price realization over local mandi rates.
+• Supervised engineering sizing and field deployment of decentralized solar micro-irrigation pump sets and rural cold storage units, reducing post-harvest losses in perishable produce by 18%.
+• Replaced paper surveying with mobile data telemetry using Open Data Kit (ODK) and KoboToolbox linked to centralized Python and SQL databases, tracking over 12,000 monthly field data points in real time.
+• Governed corporate CSR and donor allocations, structuring Theory of Change models that delivered a verified 4.8x Social Return on Investment (SROI).
+• Secured formal working capital credit lines with NABARD and regional commercial banks for producer companies, reducing dependence on high-interest local debt.</div>
+                <button class="btn-copy" onclick="copy('h-exp1', 'Current Experience')">📋 Copy Current Role</button>
+            </div>
+
+            <!-- Experience 2 -->
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">4. Experience: State Lead at NSDC (2016 – 2021)</div>
+                    <span class="tag">5 Years</span>
+                </div>
+                <div class="text-box" id="h-exp2">Served as the state operational lead for central flagship skilling schemes (PMKVY, DDU-GKY, NAPS) under the Ministry of Skill Development & Entrepreneurship (MoSDE).
+
+Key Work & Results:
+• Stewarded ₹45+ Crores ($5.5M+) in annual public budgetary outlays via the Public Financial Management System (PFMS), maintaining a spotless compliance record with zero adverse observations from the Comptroller & Auditor General (CAG) over 5 consecutive years.
+• Directed training delivery across 120+ accredited centers in 33 districts, certifying 45,000+ candidates with an 82% course completion rate and formal placement linkages.
+• Formulated District Skill Development Plans (DSDPs) in direct coordination with District Collectors and State Secretaries, matching training programs with regional industrial corridors.
+• Spearheaded outreach campaigns in tribal and aspirational districts (Dungarpur, Baran, Banswara), raising female technical training enrollment by 13 percentage points.
+• Instituted strict biometric monitoring (AEBAS) and surprise inspection protocols, de-registering six non-compliant training centers to safeguard public funds.</div>
+                <button class="btn-copy" onclick="copy('h-exp2', 'NSDC Experience')">📋 Copy NSDC Role</button>
+            </div>
+
+        </div>
+
+        <!-- TAB 3: OUTBOUND MESSAGES (Human, Peer-to-Peer, Zero Bot Feel) -->
+        <div id="tab-outbound" class="tab-pane">
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">Personalized Peer Note Generator</div>
+                    <span class="tag">&lt; 300 Chars</span>
+                </div>
+                <div class="card-desc">Writes like a respected peer sending a quick note from their phone. No generic copy-paste buzzwords.</div>
+
+                <div class="form-row">
+                    <label class="form-label">Recipient Category:</label>
+                    <select class="form-select" id="rec-type" onchange="generateNote()">
+                        <option value="csr">Head of CSR / Social Impact</option>
+                        <option value="donor">Multilateral / Development Lead (USAID, World Bank)</option>
+                        <option value="search">Executive Search / Headhunter</option>
+                        <option value="solar">Clean Energy / Solar Executive</option>
+                        <option value="ops">Senior Operations / Program Lead</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label">Recipient First Name:</label>
+                    <input type="text" class="form-input" id="rec-name" value="Amit" oninput="generateNote()">
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label">Their Organization:</label>
+                    <input type="text" class="form-input" id="rec-org" value="Tata Trusts" oninput="generateNote()">
+                </div>
+
+                <label class="form-label" style="margin-top: 14px;">Preview (Ready to paste on LinkedIn mobile app):</label>
+                <div class="text-box" id="note-out"></div>
+                <div class="char-tag" id="note-count">245 / 300 characters</div>
+
+                <button class="btn-copy green" style="margin-top: 10px;" onclick="copy('note-out', 'Connection Note')">📋 Copy Note</button>
+            </div>
+        </div>
+
+        <!-- TAB 4: COMMENTS (Human & Conversational) -->
+        <div id="tab-comments" class="tab-pane">
+
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">On CSR & Social Impact Posts</div>
+                    <span class="tag">CSR</span>
+                </div>
+                <div class="text-box" id="c1">Really glad you highlighted this. The biggest gap I've seen in CSR programs is tracking what happens 12 months after the grant cycle closes. When we tied disbursements to third-party telemetry and measurable household income uplift, the intervention quality improved dramatically. Fiduciary discipline is what keeps social impact alive.</div>
+                <button class="btn-copy" onclick="copy('c1', 'CSR Comment')">📋 Copy Comment</button>
+            </div>
+
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">On Agriculture & FPO Posts</div>
+                    <span class="tag">Agribusiness</span>
+                </div>
+                <div class="text-box" id="c2">Couldn't agree more on the working capital point. Working with 50+ FPOs across Telangana and AP, we saw that farmers simply cannot wait 30 days for buyers to clear invoices. Once we introduced warehouse receipt financing and decentralized cold storage, net farmer price realization jumped 24%. It has to be run like a real business.</div>
+                <button class="btn-copy" onclick="copy('c2', 'FPO Comment')">📋 Copy Comment</button>
+            </div>
+
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">On Solar & Energy Transition Posts</div>
+                    <span class="tag">Solar Energy</span>
+                </div>
+                <div class="text-box" id="c3">Very timely point. In our experience with rooftop solar, the ground bottleneck is rarely consumer interest—it's transformer headroom and the turnaround time for DISCOM net-meter synchronization. Without paperless utility workflows, installer working capital chokes. Systems engineering is where the real work is.</div>
+                <button class="btn-copy" onclick="copy('c3', 'Solar Comment')">📋 Copy Comment</button>
+            </div>
+
+        </div>
+
+        <!-- TAB 5: PLAYBOOK (Grounded Career Strategy) -->
+        <div id="tab-playbook" class="tab-pane">
+            <div class="card">
+                <div class="card-top">
+                    <div class="card-title">The Real-World Recruitment Playbook</div>
+                    <span class="tag">Strategy</span>
+                </div>
+                <div class="card-desc" style="font-size: 13.5px; line-height: 1.6; color: #d1d5db;">
+                    <p style="margin-bottom: 12px;"><strong>Overcoming Nepotism & Closed Networks:</strong></p>
+                    <p style="margin-bottom: 10px;">In India, top apex board seats (Managing Director, Country Head) often get decided in closed rooms based on recommendations and personal networks. If you only bet on those, you risk waiting months.</p>
+                    <p style="margin-bottom: 12px;"><strong>The 3-Horizon Safety Net:</strong></p>
+                    <ul style="padding-left: 20px; line-height: 1.7; margin-bottom: 14px;">
+                        <li><strong>Horizon 1: Senior Operations & Program Management (Quick Hiring, Zero Politics):</strong> Organizations with large donor or government contracts <em>must</em> hire someone who actually knows how to handle District Collectors, run ODK surveys, and pass CAG audits. Nepotism cannot fake field execution. These roles pay well (₹25L–₹45L+) and put you directly inside the organization.</li>
+                        <li><strong>Horizon 2: Advisory Retainers:</strong> SROI evaluations, FPO turnaround plans, solar feasibility studies. Contracted directly on deliverables without HR committee politics.</li>
+                        <li><strong>Horizon 3: The Apex Roles (The North Star):</strong> Head of CSR, Chief of Party (USAID/World Bank), Director. We pursue these continuously through RFP bidding and executive search partners.</li>
+                    </ul>
                 </div>
             </div>
         </div>
+
     </div>
 
-    <div class="copied-toast" id="toast">Copied to Clipboard!</div>
+    <!-- Bottom Mobile Nav -->
+    <nav class="bottom-nav">
+        <button class="b-btn active" onclick="goTab('posts')">
+            <span class="b-icon">✍️</span>
+            <span>Posts</span>
+        </button>
+        <button class="b-btn" onclick="goTab('profile')">
+            <span class="b-icon">👤</span>
+            <span>Profile</span>
+        </button>
+        <button class="b-btn" onclick="goTab('outbound')">
+            <span class="b-icon">🎯</span>
+            <span>Messages</span>
+        </button>
+        <button class="b-btn" onclick="goTab('comments')">
+            <span class="b-icon">💬</span>
+            <span>Comments</span>
+        </button>
+        <button class="b-btn" onclick="goTab('playbook')">
+            <span class="b-icon">🧭</span>
+            <span>Playbook</span>
+        </button>
+    </nav>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">Copied to Clipboard!</div>
 
     <script>
-        function copyPost(elementId) {
-            const text = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById('toast');
-                toast.style.display = 'block';
-                setTimeout(() => { toast.style.display = 'none'; }, 2200);
-            });
+        function goTab(id) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.b-btn').forEach(el => el.classList.remove('active'));
+
+            const p = document.getElementById('tab-' + id);
+            if (p) p.classList.add('active');
+
+            const order = ['posts', 'profile', 'outbound', 'comments', 'playbook'];
+            const idx = order.indexOf(id);
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            if (idx !== -1 && tabBtns[idx]) tabBtns[idx].classList.add('active');
+
+            const bBtns = document.querySelectorAll('.b-btn');
+            if (idx !== -1 && bBtns[idx]) bBtns[idx].classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        function copy(elementId, label) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            const text = el.innerText || el.textContent;
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast(`Copied ${label || 'text'}!`);
+                }).catch(() => fallbackCopy(text, label));
+            } else {
+                fallbackCopy(text, label);
+            }
+        }
+
+        function fallbackCopy(text, label) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+                document.execCommand('copy');
+                showToast(`Copied ${label || 'text'}!`);
+            } catch (e) {
+                alert('Please select and copy manually.');
+            }
+            document.body.removeChild(ta);
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = '✓ ' + msg;
+            t.classList.add('show');
+            setTimeout(() => { t.classList.remove('show'); }, 2200);
+        }
+
+        function generateNote() {
+            const type = document.getElementById('rec-type').value;
+            const name = document.getElementById('rec-name').value.trim() || 'there';
+            const org = document.getElementById('rec-org').value.trim() || 'your organization';
+            const fName = name.split(' ')[0];
+
+            let text = '';
+            if (type === 'csr') {
+                text = `Hi ${fName}, saw your recent work with ${org}. Over the last decade leading large skilling & rural programs (TISS Mumbai + B.Tech), we've focused heavily on 4.8x verified SROI and field telemetry across 59 districts. Would be great to stay connected as fellow sector practitioners.`;
+            } else if (type === 'donor') {
+                text = `Hi ${fName}, following ${org}'s rural and livelihoods portfolio with interest. With 10+ years unbroken post-PG leadership across 50+ FPOs and state-level NSDC operations, I frequently exchange notes on large field delivery. Would value connecting.`;
+            } else if (type === 'search') {
+                text = `Hi ${fName}, noticed your executive search focus in social impact and energy. I lead large-scale rural development, public policy, and clean-tech operations (ex-NSDC State Lead, TISS + B.Tech). Glad to connect and keep in touch for senior leadership mandates.`;
+            } else if (type === 'solar') {
+                text = `Hi ${fName}, following ${org}'s clean energy footprint. As an engineer working on PM Surya Ghar and rural decentralized infrastructure, I follow your updates with great interest. Would value connecting as peers.`;
+            } else {
+                text = `Hi ${fName}, really respect the work you're driving at ${org}. Having spent 15+ years managing large-scale livelihoods, FPO federations, and public policy delivery across 59 districts, I always look to connect with solid operators. Glad to connect.`;
+            }
+
+            const outEl = document.getElementById('note-out');
+            const countEl = document.getElementById('note-count');
+            outEl.innerText = text;
+            countEl.innerText = `${text.length} / 300 characters`;
+            countEl.style.color = text.length > 300 ? '#ef4444' : '#10b981';
+        }
+
+        generateNote();
     </script>
 </body>
 </html>
