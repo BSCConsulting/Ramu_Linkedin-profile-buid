@@ -1,0 +1,42 @@
+name: Automated Executive Desk Radar Update
+
+on:
+  schedule:
+    # Runs every Monday and Thursday morning at 06:00 AM IST (00:30 UTC)
+    - cron: '30 0 * * 1,4'
+  workflow_dispatch: # Allows 1-click manual trigger anytime from GitHub UI
+
+jobs:
+  update-radar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Update Thematic Intelligence Streams
+        run: |
+          python3 -c "
+          from agent_core.thematic_streams import export_thematic_streams_json
+          export_thematic_streams_json()
+          print('Successfully refreshed thematic intelligence streams.')
+          "
+
+      - name: Commit & Push to Main (Auto-Triggers Vercel)
+        run: |
+          git config user.name "The Executive Desk Bot"
+          git config user.email "bot@bsctech.in"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes detected. Skipping commit."
+          else
+            git commit -m "chore(radar): automated refresh of weekly thematic streams [skip ci]"
+            git push origin main
+          fi
