@@ -43,7 +43,7 @@ def main():
 
     # Command: outbound-note
     note_parser = subparsers.add_parser("outbound-note", help="Generate a personalized connection note")
-    note_parser.add_argument("--type", choices=["csr", "multilateral", "headhunter", "solarenergy", "general"], default="csr")
+    note_parser.add_argument("--type", choices=["undp", "ukwdp", "uksdm", "tiss", "jntu", "csr", "search", "solar", "general", "multilateral", "headhunter", "solarenergy"], default="undp")
     note_parser.add_argument("--name", default="Director", help="Recipient full name")
     note_parser.add_argument("--org", default="Organization", help="Recipient organization name")
 

@@ -30,7 +30,7 @@
             --brand-emerald-light: #ecfdf5;
             --brand-emerald-border: #a7f3d0;
             
-            --accent-solar: #d97706;     /* Warm Solar Gold / Amber */
+            --accent-solar: #b45309;     /* Warm Solar Gold / Amber (WCAG AA High-Contrast) */
             --accent-solar-light: #fffbeb;
             --accent-solar-border: #fde68a;
             
@@ -690,6 +690,89 @@
         .bottom-nav-item.active {
             color: var(--brand-emerald);
         }
+
+        .live-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--brand-emerald);
+            background: var(--brand-emerald-light);
+            border: 1px solid var(--brand-emerald-border);
+            padding: 5px 11px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Mobile & Tablet Responsive Enhancements */
+        @media (max-width: 640px) {
+            body {
+                padding-bottom: 84px;
+            }
+            .header-content {
+                padding: 0 2px;
+            }
+            .brand-meta h1 {
+                font-size: 16px;
+            }
+            .brand-meta p {
+                font-size: 11px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 175px;
+            }
+            .live-status-pill {
+                display: none; /* Keep header compact on phones */
+            }
+            .tab-bar-card {
+                display: none; /* Mobile uses fixed bottom nav */
+            }
+            .container {
+                padding: 12px 14px;
+            }
+            .prosperity-card {
+                padding: 16px 14px;
+                border-radius: var(--radius-lg);
+            }
+            .button-action-row {
+                grid-template-columns: 1fr; /* Full-width tap targets on phones */
+                gap: 8px;
+            }
+            .btn-action {
+                width: 100%;
+                padding: 11px 14px;
+                font-size: 13px;
+            }
+            .editable-box {
+                font-size: 13px;
+                padding: 12px 13px;
+            }
+            .toast-pill {
+                width: calc(100% - 32px);
+                max-width: 320px;
+                text-align: center;
+                justify-content: center;
+                font-size: 12.5px;
+                bottom: 74px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -705,6 +788,7 @@
                 </div>
             </div>
             <div class="header-actions">
+                <span class="live-status-pill"><span class="pulse-dot"></span>Live &amp; Synced</span>
                 <a href="https://www.linkedin.com/in/ramumunugoti/" target="_blank" class="btn-header-link">
                     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                     LinkedIn Profile
@@ -1093,6 +1177,7 @@ Direct Inquiries: ramu.munugoti@bsctech.in | Hyderabad, Telangana</div>
                         <option value="jntu">JNTU Engineering Alumni (Clean Tech, Infrastructure)</option>
                         <option value="csr">Corporate Head of CSR & Social Impact</option>
                         <option value="search">Executive Search Partner / Headhunter</option>
+                        <option value="solar">Clean Tech & Solar Energy Executives</option>
                     </select>
                 </div>
 
@@ -1108,7 +1193,10 @@ Direct Inquiries: ramu.munugoti@bsctech.in | Hyderabad, Telangana</div>
 
                 <div class="meta-context" style="margin-top: 14px; margin-bottom: 6px;">
                     <label class="form-label" style="margin-bottom: 0;">Editable Live Preview (Auto-saves):</label>
-                    <span class="save-status-pill" id="status-note-preview-text">✓ Ready</span>
+                    <div class="edit-controls-bar">
+                        <span class="save-status-pill" id="status-note-preview-text">✓ Ready</span>
+                        <button class="btn-reset-text" onclick="resetSection('note-preview-text')">Reset to Template</button>
+                    </div>
                 </div>
                 <div class="editable-box" contenteditable="true" id="note-preview-text" oninput="handleManualNoteEdit()" style="font-size: 13.5px; padding: 14px 16px;"></div>
                 <div class="char-counter" id="note-char-count">245 / 300 characters</div>
@@ -1296,7 +1384,8 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
             'stream-energy-post',
             'prof-headline',
             'prof-about',
-            'onepager-text'
+            'onepager-text',
+            'note-preview-text'
         ];
 
         const STORAGE_TTL_DAYS = 20;
@@ -1404,6 +1493,15 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
         }
 
         function resetSection(elementId) {
+            if (elementId === 'note-preview-text') {
+                if (!confirm('Reset outreach note back to default template?')) return;
+                localStorage.removeItem('execdesk_' + elementId);
+                generateCustomNote(true);
+                setSavePill('note-preview-text', '✓ Template Restored');
+                displayToast('Reset note to template!');
+                updateStorageDisplay();
+                return;
+            }
             if (!confirm('Reset this section back to its original default content?')) return;
             const el = document.getElementById(elementId);
             if (!el || !originalDefaults[elementId]) return;
@@ -1512,12 +1610,14 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
             document.body.removeChild(ta);
         }
 
+        let toastTimer = null;
         function displayToast(msg) {
             const toast = document.getElementById('app-toast');
             const textEl = document.getElementById('toast-text');
             textEl.innerText = msg;
             toast.classList.add('show');
-            setTimeout(() => { toast.classList.remove('show'); }, 2200);
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => { toast.classList.remove('show'); }, 2200);
         }
 
         // Targeted dossier printer (clean A4 export with zero headers, footers, or web UI chrome)
@@ -1532,7 +1632,7 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
             }, 1000);
         }
 
-        function generateCustomNote() {
+        function generateCustomNote(forceReset = false) {
             const type = document.getElementById('rec-type').value;
             const name = document.getElementById('rec-name').value.trim() || 'there';
             const org = document.getElementById('rec-org').value.trim() || 'your organization';
@@ -1553,19 +1653,33 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
                 text = `Hi ${fName}, saw your recent work with ${org}. Over the last decade leading large skilling & rural programs (TISS Mumbai + B.Tech), we've focused heavily on 4.8x verified SROI and field telemetry across 59 districts. Would be great to stay connected as fellow sector practitioners.`;
             } else if (type === 'search') {
                 text = `Hi ${fName}, noticed your executive search focus in social impact and energy. I lead large-scale rural development, public policy, and clean-tech operations (ex-NSDC State Lead, TISS + B.Tech). Glad to connect and keep in touch for senior leadership mandates.`;
+            } else if (type === 'solar') {
+                text = `Hi ${fName}, following ${org}'s clean energy footprint. As an engineer working on PM Surya Ghar and rural decentralized infrastructure, I follow your updates with great interest. Would value connecting as peers.`;
             } else {
                 text = `Hi ${fName}, really respect the work you're driving at ${org}. Having spent 15+ years managing large-scale livelihoods, FPO federations, and public policy delivery across 59 districts, I always look to connect with solid operators. Glad to connect.`;
             }
 
             const previewBox = document.getElementById('note-preview-text');
-            previewBox.innerText = text;
-            updateCharCount(text);
+            if (previewBox) {
+                previewBox.innerText = text;
+                originalDefaults['note-preview-text'] = text;
+                updateCharCount(text);
+                setSavePill('note-preview-text', '✓ Ready');
+            }
         }
 
         function handleManualNoteEdit() {
             const previewBox = document.getElementById('note-preview-text');
+            if (!previewBox) return;
             const text = previewBox.innerText;
             updateCharCount(text);
+            handleAutoSave('note-preview-text');
+        }
+
+        function updateCharCount(text) {
+            const counter = document.getElementById('note-char-count');
+            counter.innerText = `${text.length} / 300 characters`;
+            counter.style.color = text.length > 300 ? '#dc2626' : '#065f46';
         }
 
         function updateCharCount(text) {

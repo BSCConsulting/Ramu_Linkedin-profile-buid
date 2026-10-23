@@ -16,6 +16,14 @@ def generate_connection_note(target_type: str, recipient_name: str, org_name: st
     fName = recipient_name.split()[0] if recipient_name else "there"
     t = target_type.lower()
     
+    # Normalize aliases
+    if t == "multilateral":
+        t = "undp"
+    elif t == "headhunter":
+        t = "search"
+    elif t == "solarenergy":
+        t = "solar"
+    
     if t == "undp":
         # UNDP Leadership & Program Leads
         note = (
