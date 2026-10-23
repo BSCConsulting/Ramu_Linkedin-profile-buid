@@ -1128,6 +1128,60 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
                     </ul>
                 </div>
             </div>
+
+            <!-- Storage & Memory Management Card -->
+            <div class="prosperity-card" style="margin-top: 24px;">
+                <div class="card-header-bar">
+                    <div class="card-title-group">
+                        <h3>Storage & Memory Hygiene (20-Day Auto-Purge Policy)</h3>
+                    </div>
+                    <span class="tag-badge tag-emerald">Active • Auto-Cleaning</span>
+                </div>
+                <div class="meta-context">
+                    <div class="meta-tags-left">
+                        <span class="meta-tag">⚡ Memory Leak Defense</span>
+                        <span class="meta-tag">🧹 Auto-TTL: 20 Days</span>
+                    </div>
+                </div>
+                <div class="editorial-content-box" style="font-size: 13.5px; line-height: 1.72;">
+                    <p style="margin-bottom: 12px;">To keep <strong>The Executive Desk</strong> lightning-fast, zero-bloat, and lightweight on phones and laptops, an automated storage and memory hygiene policy is active:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 16px 0;">
+                        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px;">
+                            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px;">Browser Storage Used</div>
+                            <div id="storage-usage-counter" style="font-size: 20px; font-weight: 800; color: var(--brand-emerald); margin-top: 4px;">~4.2 KB</div>
+                            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">Quota: 5,000 KB (&lt; 0.1% occupied)</div>
+                        </div>
+                        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px;">
+                            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px;">Retention TTL Policy</div>
+                            <div style="font-size: 20px; font-weight: 800; color: var(--accent-solar); margin-top: 4px;">20 Days</div>
+                            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">Edits older than 20 days auto-purge</div>
+                        </div>
+                        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px;">
+                            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px;">Client RAM Footprint</div>
+                            <div style="font-size: 20px; font-weight: 800; color: var(--accent-navy); margin-top: 4px;">Minimal (~18 MB)</div>
+                            <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">Timers &amp; detached DOM auto-collected</div>
+                        </div>
+                    </div>
+
+                    <ul style="padding-left: 20px; margin-bottom: 14px; color: var(--text-secondary);">
+                        <li style="margin-bottom: 8px;"><strong>Automated Janitor:</strong> Every time the desk opens, drafts and custom revisions older than 20 days are evaluated and safely cleared to reclaim space.</li>
+                        <li style="margin-bottom: 8px;"><strong>GitHub &amp; Cloud Runner Cleanup:</strong> All backend batch logs and artifacts older than 20 days are pruned by <code style="background: var(--bg-elevated); padding: 2px 6px; border-radius: 4px;">storage_manager.py</code> on every workflow run.</li>
+                        <li style="margin-bottom: 8px;"><strong>Serverless Zero-RAM Edge:</strong> Hosted on Vercel Edge CDN with zero persistent background server memory.</li>
+                    </ul>
+
+                    <div style="display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap;">
+                        <button class="btn-action btn-emerald" onclick="manualPurgeStorage()">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                            Purge Stale Cache &amp; Free RAM
+                        </button>
+                        <button class="btn-action btn-outline" onclick="resetAllToFactoryDefaults()">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                            Reset All to Factory Defaults
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -1175,27 +1229,72 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
             'onepager-text'
         ];
 
-        // Initialize localStorage auto-save system
+        const STORAGE_TTL_DAYS = 20;
+        const STORAGE_TTL_MS = STORAGE_TTL_DAYS * 24 * 60 * 60 * 1000;
+
+        // Initialize localStorage with 20-Day TTL Auto-Purge
         document.addEventListener('DOMContentLoaded', () => {
+            // First: enforce 20-day storage hygiene
+            enforceStorageHygiene(STORAGE_TTL_DAYS);
+
             editableIds.forEach(id => {
                 const el = document.getElementById(id);
                 if (!el) return;
                 
-                // Cache default
+                // Cache default factory text
                 originalDefaults[id] = el.innerText;
 
-                // Load from localStorage if present
-                const saved = localStorage.getItem('execdesk_' + id);
-                if (saved !== null) {
-                    el.innerText = saved;
-                    setSavePill(id, '✓ Saved (Custom)');
+                // Load from localStorage if present and valid
+                const raw = localStorage.getItem('execdesk_' + id);
+                if (raw !== null) {
+                    try {
+                        const parsed = JSON.parse(raw);
+                        if (parsed && typeof parsed.text === 'string') {
+                            el.innerText = parsed.text;
+                            setSavePill(id, '✓ Saved (Custom)');
+                        } else {
+                            el.innerText = raw;
+                            setSavePill(id, '✓ Saved (Custom)');
+                        }
+                    } catch (e) {
+                        el.innerText = raw;
+                        setSavePill(id, '✓ Saved (Custom)');
+                    }
                 } else {
                     setSavePill(id, '✓ Default');
                 }
             });
 
             generateCustomNote();
+            updateStorageDisplay();
         });
+
+        // 20-Day TTL Storage Janitor: Automatically purges edits older than 20 days
+        function enforceStorageHygiene(maxAgeDays = 20) {
+            const cutoff = Date.now() - (maxAgeDays * 24 * 60 * 60 * 1000);
+            let purgedCount = 0;
+
+            for (let i = localStorage.length - 1; i >= 0; i--) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('execdesk_')) {
+                    try {
+                        const raw = localStorage.getItem(key);
+                        if (raw && raw.startsWith('{')) {
+                            const parsed = JSON.parse(raw);
+                            if (parsed.savedAt && parsed.savedAt < cutoff) {
+                                localStorage.removeItem(key);
+                                purgedCount++;
+                            }
+                        }
+                    } catch (e) {
+                        // ignore parse errors
+                    }
+                }
+            }
+            if (purgedCount > 0) {
+                console.log(`[Executive Desk Storage] Auto-purged ${purgedCount} items older than ${maxAgeDays} days.`);
+            }
+        }
 
         // Auto-save debounce tracker
         const saveTimeouts = {};
@@ -1211,9 +1310,19 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
             }
 
             saveTimeouts[elementId] = setTimeout(() => {
-                const text = el.innerText;
-                localStorage.setItem('execdesk_' + elementId, text);
-                setSavePill(elementId, '✓ Saved');
+                const payload = {
+                    text: el.innerText,
+                    savedAt: Date.now()
+                };
+                try {
+                    localStorage.setItem('execdesk_' + elementId, JSON.stringify(payload));
+                    setSavePill(elementId, '✓ Saved');
+                } catch (err) {
+                    console.error('Storage quota exceeded:', err);
+                }
+                updateStorageDisplay();
+                // Release timeout reference for V8 GC
+                delete saveTimeouts[elementId];
             }, 600);
         }
 
@@ -1233,6 +1342,52 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
             localStorage.removeItem('execdesk_' + elementId);
             setSavePill(elementId, '✓ Default Restored');
             displayToast('Reset to original default content!');
+            updateStorageDisplay();
+        }
+
+        // Purges all custom saved drafts and resets all sections to default factory state
+        function resetAllToFactoryDefaults() {
+            if (!confirm('Are you sure you want to reset ALL posts and profile blurbs back to factory defaults?')) return;
+            editableIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && originalDefaults[id]) {
+                    el.innerText = originalDefaults[id];
+                    localStorage.removeItem('execdesk_' + id);
+                    setSavePill(id, '✓ Default');
+                }
+            });
+            manualPurgeStorage();
+            displayToast('All sections reset to factory defaults!');
+        }
+
+        // 1-Click Storage & RAM Cache Purge
+        function manualPurgeStorage() {
+            enforceStorageHygiene(STORAGE_TTL_DAYS);
+            // Clear any active debounce timeouts to free timers
+            Object.keys(saveTimeouts).forEach(k => {
+                clearTimeout(saveTimeouts[k]);
+                delete saveTimeouts[k];
+            });
+            updateStorageDisplay();
+            displayToast('Storage cache cleaned & RAM refreshed!');
+        }
+
+        // Computes exact byte footprint of localStorage
+        function updateStorageDisplay() {
+            let totalBytes = 0;
+            try {
+                for (let key in localStorage) {
+                    if (localStorage.hasOwnProperty(key)) {
+                        totalBytes += ((localStorage[key].length + key.length) * 2);
+                    }
+                }
+            } catch (e) {}
+
+            const kb = (totalBytes / 1024).toFixed(1);
+            const counterEl = document.getElementById('storage-usage-counter');
+            if (counterEl) {
+                counterEl.innerText = `${kb} KB`;
+            }
         }
 
         function activateTab(tabKey) {

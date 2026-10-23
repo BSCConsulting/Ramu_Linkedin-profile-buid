@@ -82,3 +82,42 @@ def generate_connection_note(target_type: str, recipient_name: str, org_name: st
         )
         
     return note
+
+
+def generate_high_signal_comment(theme: str) -> str:
+    """
+    Generates an authoritative, practitioner comment to drop on relevant sector posts.
+    Free of generic AI buzzwords; anchored in field operational experience.
+    """
+    t = theme.lower()
+    if t == "csr_sroi":
+        return (
+            "Spot on analysis. In our field audits across 50+ producer companies and state programs, "
+            "we found that SROI drops dramatically if post-funding candidate or farmer retention isn't "
+            "monitored at the 12-month mark. Real sustainability lives in working capital timing and "
+            "daily telemetry, not just one-time disbursement numbers."
+        )
+    elif t == "fpo_aggregation":
+        return (
+            "The harvest-week cashflow gap is indeed the number one barrier for smallholder aggregation. "
+            "Unless an FPO can issue payment within 48 hours via warehouse receipts or localized credit lines, "
+            "farmers have no choice but to discount at the local mandi. Running FPOs as supply chain entities "
+            "rather than social societies changes that equation entirely."
+        )
+    elif t == "solar_grid":
+        return (
+            "Crucial point on decentralized solar. Sizing capacity is straightforward, but the bottleneck "
+            "is always distribution transformer headroom and net-metering synchronization with state DISCOMs. "
+            "Embedding telemetry into rural substations is the only way PM Surya Ghar achieves true grid reliability."
+        )
+    elif t == "public_policy":
+        return (
+            "Completely agree. The supposed trade-off between implementation speed and CAG audit compliance "
+            "is false. When PFMS tracking and geotagged field inspections are treated as daily operational habits "
+            "rather than year-end formalities, public schemes scale faster and maintain 100% clean audit records."
+        )
+    else:
+        return (
+            "Strong perspective. Large-scale public programs and rural interventions succeed when field friction "
+            "is solved at the district committee and frontline operator level. Appreciate you highlighting this."
+        )

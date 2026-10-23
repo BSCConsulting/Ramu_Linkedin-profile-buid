@@ -29,6 +29,10 @@ jobs:
           print('Successfully refreshed thematic intelligence streams.')
           "
 
+      - name: Storage & Memory Hygiene (Auto-Purge > 20 Days)
+        run: |
+          python3 agent_core/storage_manager.py --days 20
+
       - name: Commit & Push to Main (Auto-Triggers Vercel)
         run: |
           git config user.name "The Executive Desk Bot"
