@@ -526,7 +526,7 @@
             font-weight: 600;
         }
 
-        /* Print One-Pager Stylesheet — Strips all web chrome & browser headers/footers */
+        /* Print Stylesheet — Strips all web chrome & browser headers/footers */
         @page {
             size: A4 portrait;
             margin: 0; /* Suppresses browser default header (date/title) and footer (URL/pages) */
@@ -542,7 +542,7 @@
                 print-color-adjust: exact !important;
             }
             
-            /* Remove all web application chrome, navs, headers, tags, and badges */
+            /* Remove all web application chrome, navs, headers, tags, form controls, and badges */
             header, 
             .nav-tabs, 
             .tab-bar-card, 
@@ -555,7 +555,11 @@
             .editable-helper-hint,
             .card-header-bar,
             .meta-context,
-            .tag-badge {
+            .tag-badge,
+            .form-group,
+            .char-counter,
+            .btn-header-link,
+            .note-card-internal {
                 display: none !important;
             }
 
@@ -570,17 +574,37 @@
                 display: none !important;
             }
 
-            #pane-artifacts {
+            /* Default: active tab prints cleanly if window.print() called directly */
+            .tab-pane.active {
+                display: block !important;
+                margin: 0 !important;
+                padding: 18mm 20mm !important;
+            }
+
+            /* Dedicated print targets */
+            body.print-target-artifacts #pane-artifacts {
                 display: block !important;
                 margin: 0 !important;
                 padding: 18mm 20mm !important; /* Spotless executive letterhead margins */
+            }
+            body.print-target-artifacts .tab-pane:not(#pane-artifacts) {
+                display: none !important;
+            }
+
+            body.print-target-profile #pane-profile {
+                display: block !important;
+                margin: 0 !important;
+                padding: 18mm 20mm !important;
+            }
+            body.print-target-profile .tab-pane:not(#pane-profile) {
+                display: none !important;
             }
 
             .prosperity-card {
                 background: none !important;
                 border: none !important;
                 box-shadow: none !important;
-                margin: 0 !important;
+                margin: 0 0 16pt 0 !important;
                 padding: 0 !important;
             }
 
@@ -959,9 +983,9 @@ To the solar installers and engineers here: what is your current turnaround time
 
         <!-- ==================== TAB 2: PROFILE & AVAILABILITY (EDITABLE) ==================== -->
         <div id="pane-profile" class="tab-pane">
-            <div class="prosperity-card" style="border-color: var(--brand-emerald-border); background: var(--brand-emerald-light);">
+            <div class="prosperity-card note-card-internal" style="border-color: var(--brand-emerald-border); background: var(--brand-emerald-light);">
                 <div class="card-title-group" style="margin-bottom: 6px;">
-                    <h3 style="color: var(--brand-emerald);">Executive Availability Framing (Gap 3 Resolved)</h3>
+                    <h3 style="color: var(--brand-emerald);">Executive Availability Framing (Strategic Context)</h3>
                 </div>
                 <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.55;">This profile explicitly clarifies that while you run BSC Consulting as a practitioner sandbox, you are <strong>actively seeking and ready for direct appointment into Full-Time Senior Leadership, Chief of Party mandates, and Board Advisory roles</strong>.</p>
             </div>
@@ -1033,10 +1057,16 @@ Direct Inquiries: ramu.munugoti@bsctech.in | Hyderabad, Telangana</div>
                     <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
                     Tap to edit text directly. Auto-saves as you type.
                 </div>
-                <button class="btn-action btn-outline" style="width: 100%; border-color: var(--brand-emerald); color: var(--brand-emerald);" onclick="copySnippet('prof-about', 'About Section')">
-                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-                    Copy About Section
-                </button>
+                <div class="button-action-row">
+                    <button class="btn-action btn-emerald" onclick="copySnippet('prof-about', 'About Section')">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                        Copy About Section
+                    </button>
+                    <button class="btn-action btn-outline" onclick="printDossier('profile')">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                        Print / Save Profile PDF
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -1136,7 +1166,7 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                         Copy Bio Text
                     </button>
-                    <button class="btn-action btn-outline" onclick="window.print()">
+                    <button class="btn-action btn-outline" onclick="printDossier('artifacts')">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                         Print / Save PDF
                     </button>
@@ -1488,6 +1518,18 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
             textEl.innerText = msg;
             toast.classList.add('show');
             setTimeout(() => { toast.classList.remove('show'); }, 2200);
+        }
+
+        // Targeted dossier printer (clean A4 export with zero headers, footers, or web UI chrome)
+        function printDossier(targetPane) {
+            document.body.className = document.body.className.replace(/print-target-\w+/g, '').trim();
+            if (targetPane) {
+                document.body.classList.add('print-target-' + targetPane);
+            }
+            window.print();
+            setTimeout(() => {
+                document.body.className = document.body.className.replace(/print-target-\w+/g, '').trim();
+            }, 1000);
         }
 
         function generateCustomNote() {
