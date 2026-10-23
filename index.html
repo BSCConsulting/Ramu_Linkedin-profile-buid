@@ -526,39 +526,75 @@
             font-weight: 600;
         }
 
-        /* Print One-Pager Stylesheet */
+        /* Print One-Pager Stylesheet — Strips all web chrome & browser headers/footers */
+        @page {
+            size: A4 portrait;
+            margin: 0; /* Suppresses browser default header (date/title) and footer (URL/pages) */
+        }
+
         @media print {
-            body {
+            html, body {
                 background: #ffffff !important;
-                color: #000000 !important;
+                color: #0f172a !important;
+                margin: 0 !important;
                 padding: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
-            header, .nav-tabs, .tab-bar-card, .bottom-nav, .ribbon-wrapper, .button-action-row, .btn-action, .toast-pill, .edit-controls-bar, .editable-helper-hint {
+            
+            /* Remove all web application chrome, navs, headers, tags, and badges */
+            header, 
+            .nav-tabs, 
+            .tab-bar-card, 
+            .bottom-nav, 
+            .ribbon-wrapper, 
+            .button-action-row, 
+            .btn-action, 
+            .toast-pill, 
+            .edit-controls-bar, 
+            .editable-helper-hint,
+            .card-header-bar,
+            .meta-context,
+            .tag-badge {
                 display: none !important;
             }
+
             .container {
                 max-width: 100% !important;
+                width: 100% !important;
+                margin: 0 !important;
                 padding: 0 !important;
             }
+
             .tab-pane {
                 display: none !important;
             }
+
             #pane-artifacts {
                 display: block !important;
+                margin: 0 !important;
+                padding: 18mm 20mm !important; /* Spotless executive letterhead margins */
             }
+
             .prosperity-card {
                 background: none !important;
                 border: none !important;
                 box-shadow: none !important;
+                margin: 0 !important;
                 padding: 0 !important;
             }
+
             .editable-box {
                 background: none !important;
                 border: none !important;
                 color: #0f172a !important;
-                font-size: 11.5pt !important;
-                line-height: 1.5 !important;
+                font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+                font-size: 10.5pt !important;
+                line-height: 1.56 !important;
+                letter-spacing: -0.01em !important;
                 padding: 0 !important;
+                margin: 0 !important;
+                white-space: pre-wrap !important;
             }
         }
 
@@ -1104,6 +1140,10 @@ Open to Full-time Executive Appointments (Director / Practice Lead / Chief of Pa
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                         Print / Save PDF
                     </button>
+                </div>
+                <div style="margin-top: 10px; font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span><strong>Spotless PDF Output:</strong> Headers, footers, website URLs, and web badges are automatically stripped. In your browser print window, make sure "Headers and footers" is unchecked.</span>
                 </div>
             </div>
         </div>
